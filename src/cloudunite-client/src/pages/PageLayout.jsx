@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import { DiskDrawer } from "../modules/DiskDrawer";
 import { Header } from "../modules/Header";
 import { Outlet } from "react-router-dom";
+import { ToolBar } from "../modules/ToolBar/components/ToolBar";
 
 export const PageLayout = () => {
     const [mobileDrawerOpen, mobileDrawerToggle] = useReducer(
@@ -25,6 +26,7 @@ export const PageLayout = () => {
                     mt: { xs: "56px", sm: "64px" },
                 }}
             >
+                <ToolBar />
                 <Outlet />
             </Box>
         </Box>
