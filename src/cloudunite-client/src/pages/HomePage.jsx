@@ -1,10 +1,9 @@
 import React from "react";
 import { useLocation, useNavigation } from "react-router-dom";
+import { Header } from "../modules/Header/components/Header";
 
 const HomePage = () => {
-    const location = useLocation();
-    console.log(location);
-    return <h1>Добро пожаловать</h1>;
+    return <Header />;
 };
 
 export default HomePage;

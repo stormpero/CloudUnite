@@ -9,7 +9,7 @@ export const MainContainer = ({ children }) => {
             component="main"
             sx={{
                 flexGrow: 1,
-                bgcolor: "background.default",
+                bgcolor: "#1976d2",
                 p: 3,
             }}
         >
