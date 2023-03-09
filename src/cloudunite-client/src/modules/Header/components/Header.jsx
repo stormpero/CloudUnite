@@ -4,14 +4,14 @@ import { IconDrawer } from "./IconDrawer";
 import { SearchInput } from "./SearchInput";
 import { HeaderIcons } from "./HeaderIcons";
 
-export const Header = () => {
+export const Header = ({ drawerToggle }) => {
     return (
         <AppBar
             position="fixed"
             sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
         >
             <Toolbar sx={{ paddingLeft: { sm: "0" } }}>
-                <IconDrawer />
+                <IconDrawer drawerToggle={drawerToggle} />
                 <Typography
                     variant="h6"
                     component="div"

@@ -1,9 +1,11 @@
-import React from "react";
-import { useLocation, useNavigation } from "react-router-dom";
-import { Header } from "../modules/Header/components/Header";
+import { Box } from "@mui/material";
+import React, { useReducer } from "react";
+import { DiskDrawer } from "../modules/DiskDrawer/components/DiskDrawer";
+import { Header } from "../modules/Header";
+import { PageLayout } from "./PageLayout";
 
 const HomePage = () => {
-    return <Header />;
+    return <h1>2313</h1>;
 };
 
 export default HomePage;

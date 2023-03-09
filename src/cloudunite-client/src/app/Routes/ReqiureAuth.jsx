@@ -1,14 +1,15 @@
 import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { AppLayout } from "../Routes/AppLayout";
+import { PageLayout } from "../../pages/PageLayout";
+import { AppLayout } from "./AppLayout";
 
 export const RequireAuth = () => {
     const accessToken = useAuth();
     const location = useLocation();
 
     return !accessToken ? (
-        <AppLayout />
+        <PageLayout />
     ) : (
         <Navigate to="/login" state={{ from: location }} replace />
     );
