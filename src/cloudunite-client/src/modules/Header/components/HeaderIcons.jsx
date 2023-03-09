@@ -15,12 +15,29 @@ import {
 } from "@mui/material";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setInitialState } from "../../../redux/features/authSlice";
+import { useNavigate } from "react-router-dom";
+import { useLazyLogoutQuery } from "../../../redux/api/authApi";
 
 export const HeaderIcons = () => {
     const [anchorElUser, setAnchorElUser] = useState(null);
 
     const user = useSelector((state) => state.auth.user);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [logoutQuery] = useLazyLogoutQuery();
+
+    const logout = async () => {
+        try {
+            const res = await logoutQuery().unwrap();
+            dispatch(setInitialState());
+            navigate("/");
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
@@ -104,7 +121,7 @@ export const HeaderIcons = () => {
                     </ListItemIcon>
                     Settings
                 </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
+                <MenuItem onClick={logout}>
                     <ListItemIcon>
                         <Logout fontSize="small" />
                     </ListItemIcon>

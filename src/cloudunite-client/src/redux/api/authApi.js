@@ -1,6 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { POST } from "./consts/methods";
-import { URL_GOOGLE_LOGIN, URL_GOOGLE_USER, URL_ROOT } from "./consts/urls";
+import {
+    URL_AUTH_LOGOUT,
+    URL_GOOGLE_LOGIN,
+    URL_GOOGLE_USER,
+    URL_ROOT,
+} from "./consts/urls";
 
 export const apiAuth = createApi({
     reducerPath: "authApi",
@@ -21,9 +26,15 @@ export const apiAuth = createApi({
                 credentials: "include",
             }),
         }),
+        logout: builder.query({
+            query: () => ({
+                url: URL_AUTH_LOGOUT,
+                credentials: "include",
+            }),
+        }),
     }),
 });
 
 console.log(apiAuth);
 
-export const { useLazyUserQuery } = apiAuth;
+export const { useLazyUserQuery, useLazyLogoutQuery } = apiAuth;
