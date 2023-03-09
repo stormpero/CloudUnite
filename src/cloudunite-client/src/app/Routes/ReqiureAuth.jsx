@@ -8,7 +8,7 @@ export const RequireAuth = () => {
     const accessToken = useAuth();
     const location = useLocation();
 
-    return !accessToken ? (
+    return accessToken ? (
         <PageLayout />
     ) : (
         <Navigate to="/login" state={{ from: location }} replace />

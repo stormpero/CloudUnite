@@ -10,13 +10,17 @@ import {
     ListItemIcon,
     Menu,
     MenuItem,
+    Stack,
     Typography,
 } from "@mui/material";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
+import { useSelector } from "react-redux";
 
 export const HeaderIcons = () => {
     const [anchorElUser, setAnchorElUser] = useState(null);
+
+    const user = useSelector((state) => state.auth.user);
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
@@ -42,7 +46,7 @@ export const HeaderIcons = () => {
                 edge="end"
                 color="inherit"
             >
-                <AccountCircle />
+                <Avatar sx={{ width: 32, height: 32 }} src={user.picture} />
             </IconButton>
             <Menu
                 id="account-menu"
@@ -55,7 +59,7 @@ export const HeaderIcons = () => {
                     sx: {
                         overflow: "visible",
                         filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                        width: "200px",
+                        minWidth: "200px",
                         mt: 1.5,
                         "& .MuiAvatar-root": {
                             width: 32,
@@ -81,7 +85,17 @@ export const HeaderIcons = () => {
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
                 <MenuItem onClick={handleCloseUserMenu}>
-                    <Avatar /> Profile
+                    <Avatar src={user.picture} />
+                    <Stack>
+                        {user.name}
+                        <Typography
+                            color="text.secondary"
+                            display="block"
+                            variant="caption"
+                        >
+                            {user.email}
+                        </Typography>
+                    </Stack>
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleCloseUserMenu}>
