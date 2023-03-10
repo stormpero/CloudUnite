@@ -6,7 +6,13 @@ import { ViewToggleButtons } from "./ViewToggleButtons";
 
 export const ToolBar = () => {
     return (
-        <MuiToolbar sx={{ display: "flex" }}>
+        <MuiToolbar
+            sx={{
+                display: "flex",
+                backgroundColor: "#f7f9fc",
+                borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
+            }}
+        >
             <BreadcrumbString />
             <Box sx={{ flexGrow: 1 }} />
             <ViewToggleButtons />

@@ -9,10 +9,9 @@ export const theme = createTheme({
         // secondary: {
         //     main: "#5700f2",
         // },
-        // background: {
-        //     paper: "#1c1c53",
-        //     default: "#0d0c28",
-        // },
+        background: {
+            paper: "#f7f9fc",
+        },
         // text: {
         //     primary: "#FFF",
         //     secondary: "#d1d1dc",

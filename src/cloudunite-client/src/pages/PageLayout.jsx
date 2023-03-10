@@ -4,6 +4,7 @@ import { DiskDrawer } from "../modules/DiskDrawer";
 import { Header } from "../modules/Header";
 import { Outlet } from "react-router-dom";
 import { ToolBar } from "../modules/ToolBar/components/ToolBar";
+import { FilesArea } from "../modules/Files/components/FilesArea";
 
 export const PageLayout = () => {
     const [mobileDrawerOpen, mobileDrawerToggle] = useReducer(
@@ -22,11 +23,13 @@ export const PageLayout = () => {
                 component="main"
                 sx={{
                     flexGrow: 1,
-                    bgcolor: "#1976d2",
                     mt: { xs: "56px", sm: "64px" },
+                    bgcolor: "#f7f9fc",
+                    height: "calc(100vh-250px)",
                 }}
             >
                 <ToolBar />
+                <FilesArea />
                 <Outlet />
             </Box>
         </Box>
