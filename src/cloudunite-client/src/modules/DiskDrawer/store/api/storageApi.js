@@ -1,14 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { POST } from "./consts/methods";
-import {
-    URL_AUTH_LOGOUT,
-    URL_GOOGLE_LOGIN,
-    URL_GOOGLE_USER,
-    URL_ROOT,
-} from "./consts/urls";
+import { URL_ROOT } from "../../../../redux/api/consts/urls";
+import { URL_GOOGLE_STORAGEQUOTA } from "./urls";
 
-export const apiAuth = createApi({
-    reducerPath: "authApi",
+export const storageQuotaApi = createApi({
+    reducerPath: "storageQuotaApi",
     baseQuery: fetchBaseQuery({
         baseUrl: URL_ROOT,
         prepareHeaders: (headers, { getState }) => {
@@ -20,19 +15,13 @@ export const apiAuth = createApi({
         },
     }),
     endpoints: (builder) => ({
-        user: builder.query({
+        storageQuota: builder.query({
             query: () => ({
-                url: URL_GOOGLE_USER,
-                credentials: "include",
-            }),
-        }),
-        logout: builder.query({
-            query: () => ({
-                url: URL_AUTH_LOGOUT,
+                url: URL_GOOGLE_STORAGEQUOTA,
                 credentials: "include",
             }),
         }),
     }),
 });
 
-export const { useLazyUserQuery, useLazyLogoutQuery } = apiAuth;
+export const { useStorageQuotaQuery } = storageQuotaApi;

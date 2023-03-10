@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import SignUpButton from "../UI/SignUpButton";
-import { Button } from "@mui/material";
-import axios from "axios";
 import { useLazyUserQuery } from "../redux/api/authApi";
 import { setCredentials } from "../redux/features/authSlice";
 import { useDispatch } from "react-redux";
@@ -15,7 +13,7 @@ const LoginPage = () => {
 
     const google = () => {
         const googleWindow = window.open(
-            "http://localhost:7493/api/auth/google",
+            "http://localhost:7493/api/oauth",
             "_blank",
             "width=500,height=600"
         );
@@ -34,22 +32,6 @@ const LoginPage = () => {
                     if (timer) clearInterval(timer);
                 }
             }, 500);
-        }
-    };
-
-    const drive = async () => {
-        try {
-            const response = await axios.get(
-                "http://localhost:7493/api/auth/google/drive",
-                {
-                    headers: {
-                        Authorization: "Bearer " + user?.accessToken, //the token is a variable which holds the token
-                    },
-                }
-            );
-            console.log(response.data);
-        } catch (error) {
-            console.log(error);
         }
     };
     // #34a8c8
@@ -74,7 +56,6 @@ const LoginPage = () => {
                 }}
             >
                 <SignUpButton type="google" onClick={google} />
-                <Button onClick={drive}>Drive</Button>
             </Box>
         </Box>
     );

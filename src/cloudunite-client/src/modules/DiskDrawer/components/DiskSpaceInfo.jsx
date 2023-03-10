@@ -1,10 +1,22 @@
 import React from "react";
-import { Box, LinearProgress, Typography } from "@mui/material";
-import { diskSpacePercent } from "../helpers/diskSpacePercent";
+import {
+    Box,
+    CircularProgress,
+    LinearProgress,
+    Typography,
+} from "@mui/material";
+import { bytesToGB, diskSpacePercent } from "../helpers/diskSpacePercent";
+import { useStorageQuotaQuery } from "../store/api/storageApi";
+import { Loading } from "../../../UI/Loading";
 
 const DiskSpaceInfo = () => {
-    const usedSpace = 12.3;
-    const allSpace = 15;
+    const { data, isLoading } = useStorageQuotaQuery();
+
+    if (isLoading) {
+        return <Loading />;
+    }
+
+    const { storageQuota } = data;
 
     return (
         <Box sx={{ width: "85%", m: "15px" }}>
@@ -13,11 +25,12 @@ const DiskSpaceInfo = () => {
             </Typography>
             <LinearProgress
                 variant="determinate"
-                value={diskSpacePercent(usedSpace, allSpace)}
+                value={diskSpacePercent(storageQuota.usage, storageQuota.limit)}
                 sx={{ height: "5px", mb: "2px", borderRadius: 5 }}
             />
             <Typography fontSize="13px" noWrap>
-                {usedSpace} ГБ Использовано из {allSpace} ГБ
+                {bytesToGB(storageQuota.usage)} Использовано из{" "}
+                {bytesToGB(storageQuota.limit)}
             </Typography>
         </Box>
     );
