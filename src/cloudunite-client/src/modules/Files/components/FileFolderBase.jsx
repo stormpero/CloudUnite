@@ -22,7 +22,7 @@ export const FileFolderBase = ({ icon, name }) => {
                 {icon}
                 <Typography
                     variant="h6"
-                    fontSize="18px"
+                    fontSize="15px"
                     sx={{
                         textOverflow: "ellipsis",
                         whiteSpace: "nowrap",

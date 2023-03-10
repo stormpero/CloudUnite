@@ -49,6 +49,27 @@ export const FilesArea = () => {
                 <Grid item>
                     <FileElement name="Документ №1" />
                 </Grid>
+                <Grid item>
+                    <FileElement name="Документ №2" />
+                </Grid>
+                <Grid item>
+                    <FileElement name="Документ №3" />
+                </Grid>
+                <Grid item>
+                    <FileElement name="Документ №1" />
+                </Grid>
+                <Grid item>
+                    <FileElement name="Документ №1" />
+                </Grid>
+                <Grid item>
+                    <FileElement name="Документ №5" />
+                </Grid>
+                <Grid item>
+                    <FileElement name="Документ №4" />
+                </Grid>
+                <Grid item>
+                    <FileElement name="Документ №6" />
+                </Grid>
             </Grid>
         </Box>
     );
