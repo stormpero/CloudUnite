@@ -10,10 +10,12 @@ import {
 } from "@mui/material";
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
+import { useSelectedDisk } from "../../../hooks/useSelectedDisk";
 import { disks, menu } from "../constants/drawerItems";
 import DiskSpaceInfo from "./DiskSpaceInfo";
 
 export const DiskDrawerItems = () => {
+    const disk = useSelectedDisk();
     return (
         <>
             <Toolbar />
@@ -21,7 +23,8 @@ export const DiskDrawerItems = () => {
                 <List>
                     {disks.map((item) => (
                         <ListItem
-                            key={item.title}
+                            onClick={() => console.log(23)}
+                            key={item.id}
                             component={RouterLink}
                             to={item.to}
                             disablePadding
@@ -32,7 +35,7 @@ export const DiskDrawerItems = () => {
                                 marginBottom: "7px",
                             }}
                         >
-                            <ListItemButton>
+                            <ListItemButton selected={item.id === disk}>
                                 <ListItemIcon
                                     sx={{
                                         minWidth: "39px",

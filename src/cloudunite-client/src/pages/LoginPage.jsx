@@ -25,7 +25,7 @@ const LoginPage = () => {
                         const user = await getUsers().unwrap();
                         console.log(user);
                         dispatch(setCredentials(user));
-                        navigate("/");
+                        navigate("/disk");
                     } catch (err) {
                         console.log(err);
                     }

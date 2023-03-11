@@ -10,12 +10,11 @@ export const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<AppLayout />}>
-                <Route element={<RequireAuth />}>
-                    <Route index element={<HomePage />} />
-                    <Route path="google" element={null} />
-                    <Route path="yandex" element={null} />
+                <Route path="disk" element={<RequireAuth />}>
+                    <Route path="google/*" element={<HomePage />} />
+                    <Route path="yandex/*" element={<HomePage />} />
+                    <Route path="onedrive/*" element={null} />
                 </Route>
-
                 <Route path="login" element={<LoginPage />} />
             </Route>
             <Route path="login/success" element={<LoginSuccessPage />} />

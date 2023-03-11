@@ -5,7 +5,7 @@ import { Header } from "../modules/Header";
 import { PageLayout } from "./PageLayout";
 
 const HomePage = () => {
-    return null;
+    return <h1>123</h1>;
 };
 
 export default HomePage;
