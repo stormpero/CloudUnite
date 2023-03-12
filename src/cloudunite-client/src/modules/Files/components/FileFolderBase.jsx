@@ -3,6 +3,7 @@ import React from "react";
 import { ContextMenuWrapperFile } from "../../ContextMenu/components/ContextMenuWrapperFile";
 
 export const FileFolderBase = ({ icon, name }) => {
+    //TODO: ContexMenu in map
     return (
         <ContextMenuWrapperFile>
             <ButtonBase
