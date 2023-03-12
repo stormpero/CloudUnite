@@ -52,13 +52,16 @@ export const BreadcrumbString = () => {
         <Breadcrumbs
             separator={<NavigateNextIcon fontSize="small" />}
             aria-label="breadcrumb"
+            maxItems={5}
         >
             <LinkRouter to="/disk/google">
                 <HomeIcon sx={{ mr: 0.5, pb: "2px" }} fontSize="small" />
                 Мой диск
             </LinkRouter>
             {pathnames.map((pathname, index) => {
-                const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
+                const routeTo = `/disk/google/${pathnames
+                    .slice(0, index + 1)
+                    .join("/")}`;
                 const isLast = index === pathnames.length - 1;
                 return isLast ? (
                     <Typography key={routeTo}>{pathname}</Typography>

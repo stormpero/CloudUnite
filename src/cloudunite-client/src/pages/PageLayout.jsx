@@ -5,6 +5,7 @@ import { Header } from "../modules/Header";
 import { Outlet } from "react-router-dom";
 import { ToolBar } from "../modules/ToolBar/components/ToolBar";
 import { FilesArea } from "../modules/Files/components/FilesArea";
+import { ContextMenuWrapper } from "../modules/ContextMenu";
 
 export const PageLayout = () => {
     const [mobileDrawerOpen, mobileDrawerToggle] = useReducer(
@@ -29,7 +30,9 @@ export const PageLayout = () => {
                 }}
             >
                 <ToolBar />
-                <FilesArea />
+                <ContextMenuWrapper>
+                    <FilesArea />
+                </ContextMenuWrapper>
                 <Outlet />
             </Box>
         </Box>
