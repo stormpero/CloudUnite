@@ -1,1 +1,1 @@
-export const URL_GOOGLE_STORAGEQUOTA = "/g/drive/storageQuota";
+export const URL_GOOGLE_STORAGEQUOTA = "/disk/google/storageQuota";

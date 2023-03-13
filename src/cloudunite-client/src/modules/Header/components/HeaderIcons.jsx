@@ -16,9 +16,9 @@ import {
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useDispatch, useSelector } from "react-redux";
-import { setInitialState } from "../../../redux/features/authSlice";
+import { setInitialState } from "../../../app/Auth/store/features/authSlice";
 import { useNavigate } from "react-router-dom";
-import { useLazyLogoutQuery } from "../../../redux/api/authApi";
+import { useLazyLogoutQuery } from "../../../app/Auth/store/api/authApi";
 
 export const HeaderIcons = () => {
     const [anchorElUser, setAnchorElUser] = useState(null);

@@ -3,10 +3,10 @@ import { Route, Routes } from "react-router";
 import HomePage from "../../pages/HomePage";
 import LoginPage from "../../pages/LoginPage";
 import { LoginSuccessPage } from "../../pages/LoginSuccessPage";
-import { AuthStatus } from "../Auth/AuthStatus";
-import { RequireAuth } from "../Auth/ReqiureAuth";
+import { AuthStatus, RequireAuth } from "../Auth";
 
 export const AppRoutes = () => {
+    //TODO: Fix /login/success
     return (
         <AuthStatus>
             <Routes>

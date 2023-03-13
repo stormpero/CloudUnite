@@ -1,11 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { POST } from "./consts/methods";
 import {
     URL_AUTH_LOGOUT,
-    URL_GOOGLE_LOGIN,
     URL_GOOGLE_USER,
     URL_ROOT,
-} from "./consts/urls";
+} from "../../../../constants/apiUrls";
 
 export const apiAuth = createApi({
     reducerPath: "authApi",

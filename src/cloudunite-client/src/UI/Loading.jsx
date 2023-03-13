@@ -1,6 +1,7 @@
 import { Box, CircularProgress } from "@mui/material";
 import React from "react";
 
+//TODO: Loader на весь экран
 export const Loading = () => {
     return (
         <Box
@@ -15,4 +16,3 @@ export const Loading = () => {
         </Box>
     );
 };
-

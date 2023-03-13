@@ -1,7 +1,7 @@
 import React from "react";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useAuth } from "./useAuth";
-import { PageLayout } from "../../pages/PageLayout";
+import { Navigate, useLocation } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+import { PageLayout } from "../../../pages/PageLayout";
 
 export const RequireAuth = () => {
     const auth = useAuth();

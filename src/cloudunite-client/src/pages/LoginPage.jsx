@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import SignUpButton from "../UI/SignUpButton";
-import { useLazyUserQuery } from "../redux/api/authApi";
-import { setCredentials } from "../redux/features/authSlice";
+import { useLazyUserQuery } from "../app/Auth/store/api/authApi";
+import { setCredentials } from "../app/Auth/store/features/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -25,7 +25,7 @@ const LoginPage = () => {
                         const user = await getUsers().unwrap();
                         console.log(user);
                         dispatch(setCredentials(user));
-                        navigate("/disk");
+                        navigate("/disk/google");
                     } catch (err) {
                         console.log(err);
                     }

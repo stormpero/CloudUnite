@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { URL_ROOT } from "../../../../redux/api/consts/urls";
+import { URL_ROOT } from "../../../../constants/apiUrls";
 import { URL_GOOGLE_STORAGEQUOTA } from "./urls";
 
 export const storageQuotaApi = createApi({
@@ -24,4 +24,5 @@ export const storageQuotaApi = createApi({
     }),
 });
 
-export const { useStorageQuotaQuery } = storageQuotaApi;
+export const { useStorageQuotaQuery, useLazyStorageQuotaQuery } =
+    storageQuotaApi; //TODO: delete useLazyStorageQuotaQuery
