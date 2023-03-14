@@ -1,6 +1,5 @@
 import {Users} from "../model/Users.js";
 
-import {Op} from "sequelize";
 import {UserTokens} from "../model/UserTokens.js";
 
 class UserRepository {
@@ -11,7 +10,9 @@ class UserRepository {
     async findOneByGoogleId(google_id, include = null) {
         return await Users.findOne({where: {google_id}, include});
     }
-
+    async findOneByEmail(email, include = null) {
+        return await Users.findOne({where: {email}, include});
+    }
     async createUser(values) {
         return await Users.create(values, {include: UserTokens});
     }

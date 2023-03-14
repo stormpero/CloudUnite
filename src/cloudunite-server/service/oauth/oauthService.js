@@ -11,7 +11,10 @@ class OAuthService {
     async callback(code) {
         const results = await oauth2Client.getToken(code);
         const oauth2 = await google.oauth2({
-            auth: authGoogle(results.tokens.access_token),
+            auth: authGoogle({
+                googleAccessToken: results.tokens.access_token,
+                googleRefreshToken: results.tokens.refresh_token
+            }),
             version: "v2"
         })
         const {data: userGoogle} = await oauth2.userinfo.get();
@@ -45,7 +48,7 @@ class OAuthService {
         const user = await UserRepository.findOneById(userData.id, UserTokens);
 
         const oauth2 = await google.oauth2({
-            auth: authGoogle(user.user_token.googleAccessToken),
+            auth: authGoogle(user.user_token),
             version: "v2"
         })
         const {data: userGoogle} = await oauth2.userinfo.get();

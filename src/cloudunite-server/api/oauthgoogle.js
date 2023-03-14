@@ -1,4 +1,7 @@
 import {google} from "googleapis";
+import UserRepository from "../database/repository/userRepository.js";
+import {UserTokens} from "../database/model/UserTokens.js";
+import UserTokensRepository from "../database/repository/userTokensRepository.js";
 
 const GOOGLE_REDIRECT_URL ="http://localhost:7493/api/oauth/callback";
 
@@ -19,7 +22,18 @@ export const authorizationUrl = oauth2Client.generateAuthUrl({
     include_granted_scopes: true
 });
 
-export const authGoogle = (accessToken) => {
-    oauth2Client.setCredentials({access_token: accessToken})
+oauth2Client.on('tokens', async (tokens) => {
+    const tokenInfo = await oauth2Client.getTokenInfo(tokens.access_token); // email
+    const user = await UserRepository.findOneByEmail(tokenInfo.email, UserTokens);
+    console.log("tokens On")
+    if (user) {
+        console.log("ТОКЕН ОБНОВИЛСЯ")
+        user.user_token.googleAccessToken = tokens.access_token;
+        user.user_token.save();
+    }
+});
+
+export const authGoogle = ({googleAccessToken, googleRefreshToken}) => {
+    oauth2Client.setCredentials({access_token: googleAccessToken, refresh_token: googleRefreshToken})
     return oauth2Client;
 }

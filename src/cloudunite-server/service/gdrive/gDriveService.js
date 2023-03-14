@@ -10,7 +10,7 @@ class GDriveService {
         const drive = google.drive("v3");
         try {
             const result = await drive.about.get({
-                auth:  authGoogle(user.user_token.googleAccessToken),
+                auth:  authGoogle(user.user_token),
                 fields: 'storageQuota'
             })
             return result.data;

@@ -3,6 +3,7 @@ import {DataTypes} from "sequelize";
 
 export const Users = sequelize.define("users", {
     user_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, required: true},
+    email: {type: DataTypes.STRING, unique: true, required: true},
 
     google_id: {type: DataTypes.DECIMAL},
     yandex_id: {type: DataTypes.DECIMAL},
