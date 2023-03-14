@@ -17,29 +17,22 @@ class GDriveService {
         } catch (e) {
             console.log(e);
         }
-
     }
 
-    async files(token) {
+    async files(id, folder_id) {
+        const user = await userRepository.findOneById(id, UserTokens);
+
         const drive = google.drive("v3");
         try {
-            const result = await drive.files.list({
-                auth: authGoogle(token),
-                pageSize: 10,
-                fields: 'nextPageToken, files(id, name)',
-            });
-            console.log(result)
-            const files = result.data.files;
-            if (files.length) {
-                console.log('Files:');
-                files.map((file) => {
-                    console.log(`${file.name} (${file.id})`);
-                });
-            } else {
-                console.log('No files found.');
-            }
+            const result = await drive.about.get({
+                auth:  authGoogle(user.user_token.googleAccessToken),
+                pageSize: 1000,
+                fields: 'storageQuota',
+                q: `'me' in owners and '${folder_id}' in parents`
+            })
+            return result.data;
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
     }
 }

@@ -19,8 +19,8 @@ class OAuthController {
         try {
             const {code} = req.query;
 
-            const userData = await oauthService.callback(code);
-            res.cookie("refreshToken", userData.refreshToken, {maxAge: process.env.JWT_REFRESH_AGE, httpOnly: true});
+            const refreshToken = await oauthService.callback(code);
+            res.cookie("refreshToken", refreshToken, {maxAge: process.env.JWT_REFRESH_AGE, httpOnly: true});
             return res.redirect(CLIENT_URL)
         } catch (e) {
             next(e)
@@ -58,24 +58,6 @@ class OAuthController {
             next(e)
         }
     }
-
-    //TODO: Добавить обновление токена
-
-    // async refreshtoken(req, res, next) {
-    //     try {
-    //         const errors = validationResult(req);
-    //         if (!errors.isEmpty()) {
-    //             return next(ApiError.UnauthorizedError())
-    //         }
-    //
-    //         const {refreshToken} = req.cookies;
-    //         const userData = await authService.refreshToken(refreshToken);
-    //         res.cookie("refreshToken", userData.refreshToken, {maxAge: process.env.JWT_REFRESH_AGE, httpOnly: true});
-    //         return res.json(new UserDto(userData).json());
-    //     } catch (e) {
-    //         next(e)
-    //     }
-    // }
 }
 
 export default new OAuthController()

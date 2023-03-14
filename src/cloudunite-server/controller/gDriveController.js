@@ -12,11 +12,11 @@ class GDriveController {
         }
     }
 
-    async files(req, res, next) {
+    async folderFiles(req, res, next) {
         try {
             const {user} = req;
-            await GDriveService.files(token);
-            return res.status(200).json("success")
+            const result = await GDriveService.files(user.id);
+            return res.status(200).json(result)
         } catch (e) {
             next(e)
         }

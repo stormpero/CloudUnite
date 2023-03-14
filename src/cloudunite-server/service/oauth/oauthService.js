@@ -31,7 +31,7 @@ class OAuthService {
         const tokens = tokenService.generateTokens({...userDto})
         await tokenService.saveRefreshToken(userDto.id, tokens.refreshToken);
 
-        return { ...tokens, user: userDto }
+        return tokens.refreshToken;
     }
 
 
@@ -63,22 +63,6 @@ class OAuthService {
             throw ApiError.BadRequest("RefreshToken не обнаружен")
         }
     }
-
-    // async refreshToken(refreshToken) {
-    //     const userData = tokenService.validateRefreshToken(refreshToken);
-    //     const tokenDB = await tokenService.findToken(refreshToken);
-    //     if (!userData || !tokenDB) {
-    //         throw ApiError.UnauthorizedError();
-    //     }
-    //
-    //     const _user = await UserRepository.findOneById(userData.id, Roles);
-    //     const userDto = new AuthUserDto(_user);
-    //
-    //     const tokens = tokenService.generateTokens({...userDto})
-    //     await tokenService.saveRefreshToken(userDto.id, tokens.refreshToken);
-    //
-    //     return { ...tokens, user: userDto }
-    // }
-}
+    }
 
 export default new OAuthService()
