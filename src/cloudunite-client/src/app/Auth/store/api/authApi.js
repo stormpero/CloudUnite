@@ -4,19 +4,11 @@ import {
     URL_GOOGLE_USER,
     URL_ROOT,
 } from "../../../../constants/apiUrls";
+import { baseQueryWithAuth } from "../../../../redux/api/baseQuery";
 
 export const apiAuth = createApi({
     reducerPath: "authApi",
-    baseQuery: fetchBaseQuery({
-        baseUrl: URL_ROOT,
-        prepareHeaders: (headers, { getState }) => {
-            const token = getState()?.auth?.accessToken;
-            if (token) {
-                headers.set("authorization", `Bearer ${token}`);
-            }
-            return headers;
-        },
-    }),
+    baseQuery: baseQueryWithAuth,
     endpoints: (builder) => ({
         user: builder.query({
             query: () => ({
