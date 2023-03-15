@@ -1,0 +1,1 @@
+export const CLIENT_URL_LOGIN_SUCCESS = "http://localhost:5173/login/success";

@@ -20,7 +20,9 @@ class OAuthService {
         const {data: userGoogle} = await oauth2.userinfo.get();
         let user = await UserRepository.findOneByGoogleId(userGoogle.id);
         if(!user) {
-            user = await UserRepository.createUser({google_id: userGoogle.id,
+            user = await UserRepository.createUser({
+                google_id: userGoogle.id,
+                email: userGoogle.email,
                 user_token: {
                     googleAccessToken: results.tokens.access_token,
                     googleAccessTokenExpiry: results.tokens.expiry_date,
@@ -57,7 +59,15 @@ class OAuthService {
         const tokens = tokenService.generateTokens({...userDto})
         await tokenService.saveRefreshToken(userDto.id, tokens.refreshToken);
 
-        return { ...tokens, user: userGoogle };
+
+        return { ...tokens,
+            user: userGoogle,
+            disks: {
+                google_id: user.google_id,
+                yandex_id: user.yandex_id,
+                onedrive_id: user.onedrive_id
+            }
+        };
     }
 
     async logout(refreshToken) {

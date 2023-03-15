@@ -1,13 +1,17 @@
 import {Router} from "express";
-import GoogleController from "../../controller/gDriveController.js";
+import GoogleDiskController from "../../controller/googleDiskController.js";
 import authMiddleware from "../../middleware/authMiddleware.js";
+import diskRouter from "../diskRouter.js";
 
-const gDriveRouter = new Router();
+const googleDiskRouter = new Router();
 
-gDriveRouter.get("/storageQuota", GoogleController.storageQuota);
+googleDiskRouter.use(authMiddleware)
 
-gDriveRouter.get("/list/folderFiles", GoogleController.folderFiles);
-gDriveRouter.get("/list/folderTree", GoogleController.folderTree);
 
-export default gDriveRouter;
+googleDiskRouter.get("/storageQuota", GoogleDiskController.storageQuota);
+
+googleDiskRouter.get("/list/folderFiles", GoogleDiskController.folderFiles);
+googleDiskRouter.get("/list/folderTree", GoogleDiskController.folderTree);
+
+export default googleDiskRouter;
 

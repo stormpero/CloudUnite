@@ -1,11 +1,11 @@
-import GDriveService from "../service/disks/gDriveService.js";
+import GoogleDiskService from "../service/disks/googleDiskService.js";
 
 
-class GDriveController {
+class GoogleDiskController {
     async storageQuota(req, res, next) {
         try {
             const {user} = req;
-            const result = await GDriveService.storageQuota(user.id);
+            const result = await GoogleDiskService.storageQuota(user.id);
             return res.status(200).json(result)
         } catch (e) {
             next(e)
@@ -15,7 +15,7 @@ class GDriveController {
     async folderFiles(req, res, next) {
         try {
             const {user, query: {folderId}} = req;
-            const result = await GDriveService.folderFiles(user.id, folderId);
+            const result = await GoogleDiskService.folderFiles(user.id, folderId);
             return res.status(200).json(result)
         } catch (e) {
             next(e)
@@ -25,7 +25,7 @@ class GDriveController {
     async folderTree(req, res, next) {
         try {
             const {user} = req;
-            const result = await GDriveService.folderTree(user.id);
+            const result = await GoogleDiskService.folderTree(user.id);
             return res.status(200).json(result)
         } catch (e) {
             next(e)
@@ -34,4 +34,4 @@ class GDriveController {
 
 }
 
-export default new GDriveController();
+export default new GoogleDiskController();

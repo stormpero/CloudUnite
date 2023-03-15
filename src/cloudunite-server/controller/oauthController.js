@@ -3,8 +3,8 @@ import {ApiError} from "../exceptions/apiError.js";
 import {authorizationUrl} from "../api/oauthgoogle.js";
 import {validationResult} from "express-validator";
 import oauthService from "../service/oauth/oauthService.js";
+import {CLIENT_URL_LOGIN_SUCCESS} from "../config/urls.js";
 
-const CLIENT_URL = "http://localhost:5173/login/success";
 
 class OAuthController {
     async login(req, res, next) {
@@ -18,10 +18,9 @@ class OAuthController {
     async callback(req, res, next) {
         try {
             const {code} = req.query;
-
             const refreshToken = await oauthService.callback(code);
             res.cookie("refreshToken", refreshToken, {maxAge: process.env.JWT_REFRESH_AGE, httpOnly: true});
-            return res.redirect(CLIENT_URL)
+            return res.redirect(CLIENT_URL_LOGIN_SUCCESS)
         } catch (e) {
             next(e)
         }
@@ -35,7 +34,6 @@ class OAuthController {
             }
 
             const {refreshToken} = req.cookies;
-
             const userData = await oauthService.user(refreshToken);
             res.cookie("refreshToken", userData.refreshToken, {maxAge: process.env.JWT_REFRESH_AGE, httpOnly: true});
             return res.json(new UserDto(userData).json());
@@ -50,6 +48,7 @@ class OAuthController {
             if (!errors.isEmpty()) {
                 return next(ApiError.BadRequest("RefreshToken не найден", errors.array()))
             }
+
             const {refreshToken} = req.cookies;
             await oauthService.logout(refreshToken);
             res.clearCookie("refreshToken");

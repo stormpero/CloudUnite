@@ -1,13 +1,13 @@
 import {Router} from "express";
-import gDriveRouter from "./disks/gDriveRouter.js";
 import authMiddleware from "../middleware/authMiddleware.js";
+import googleDiskRouter from "./disks/googleDiskRouter.js";
+import yandexDiskRouter from "./disks/yandexDiskRouter.js";
 
 const diskRouter = new Router();
 
-diskRouter.use(authMiddleware)
 
-diskRouter.use("/google", gDriveRouter);
-// diskRouter.use("/yandex")
+diskRouter.use("/google", googleDiskRouter);
+diskRouter.use("/yandex", yandexDiskRouter);
 // diskRouter.use("/onedrive")
 
 export default diskRouter;

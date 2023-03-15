@@ -1,9 +1,9 @@
 import {google} from "googleapis";
-import {authGoogle} from "../../../api/oauthgoogle.js";
-import userRepository from "../../../database/repository/userRepository.js";
-import {UserTokens} from "../../../database/model/UserTokens.js";
+import {authGoogle} from "../../api/oauthgoogle.js";
+import userRepository from "../../database/repository/userRepository.js";
+import {UserTokens} from "../../database/model/UserTokens.js";
 
-class GDriveService {
+class GoogleDiskService {
     async storageQuota(id) {
         const user = await userRepository.findOneById(id, UserTokens);
 
@@ -95,4 +95,4 @@ class GDriveService {
     //     });
     // }
 }
-export default new GDriveService();
+export default new GoogleDiskService();
