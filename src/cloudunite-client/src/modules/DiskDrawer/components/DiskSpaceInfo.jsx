@@ -8,15 +8,15 @@ import {
 import { bytesToGB, diskSpacePercent } from "../helpers/diskSpacePercent";
 import { useStorageQuotaQuery } from "../store/api/storageApi";
 import { Loading } from "../../../UI/Loading";
+import { useSelectedDisk } from "../../../hooks/useSelectedDisk";
 
 const DiskSpaceInfo = () => {
-    const { data, isLoading } = useStorageQuotaQuery();
+    const disk = useSelectedDisk();
+    const { data: storageQuota, isLoading } = useStorageQuotaQuery(disk);
 
     if (isLoading) {
         return <Loading />;
     }
-
-    const { storageQuota } = data;
 
     return (
         <Box sx={{ width: "85%", m: "15px" }}>

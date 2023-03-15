@@ -11,8 +11,6 @@ import { useAuth } from "../app/Auth/hooks/useAuth";
 
 const LoginPage = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const selectedDisk = useSelectedDisk();
     const [getUsers] = useLazyUserQuery();
     const auth = useAuth();
 
@@ -30,9 +28,6 @@ const LoginPage = () => {
                         const user = await getUsers().unwrap();
                         console.log(user);
                         dispatch(setCredentials(user));
-                        navigate("/disk/" + diskName(selectedDisk), {
-                            replace: true,
-                        });
                     } catch (err) {
                         console.log(err);
                     }

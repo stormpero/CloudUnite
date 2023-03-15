@@ -4,9 +4,10 @@ import authMiddleware from "../../middleware/authMiddleware.js";
 
 const gDriveRouter = new Router();
 
-gDriveRouter.get("/storageQuota", authMiddleware, GoogleController.storageQuota);
+gDriveRouter.get("/storageQuota", GoogleController.storageQuota);
 
-gDriveRouter.post("/list/folderFiles", authMiddleware, GoogleController.folderFiles); // FOLDER ID
+gDriveRouter.get("/list/folderFiles", GoogleController.folderFiles);
+gDriveRouter.get("/list/folderTree", GoogleController.folderTree);
 
 export default gDriveRouter;
 

@@ -1,4 +1,4 @@
-import GDriveService from "../service/gdrive/gDriveService.js";
+import GDriveService from "../service/disks/gDriveService.js";
 
 
 class GDriveController {
@@ -14,8 +14,18 @@ class GDriveController {
 
     async folderFiles(req, res, next) {
         try {
+            const {user, query: {folderId}} = req;
+            const result = await GDriveService.folderFiles(user.id, folderId);
+            return res.status(200).json(result)
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    async folderTree(req, res, next) {
+        try {
             const {user} = req;
-            const result = await GDriveService.files(user.id);
+            const result = await GDriveService.folderTree(user.id);
             return res.status(200).json(result)
         } catch (e) {
             next(e)
