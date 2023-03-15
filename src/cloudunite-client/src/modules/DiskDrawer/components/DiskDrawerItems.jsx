@@ -23,7 +23,6 @@ export const DiskDrawerItems = () => {
                 <List>
                     {disks.map((item) => (
                         <ListItem
-                            onClick={() => console.log(23)}
                             key={item.id}
                             component={RouterLink}
                             to={item.to}
@@ -35,7 +34,15 @@ export const DiskDrawerItems = () => {
                                 marginBottom: "7px",
                             }}
                         >
-                            <ListItemButton selected={item.id === disk}>
+                            <ListItemButton
+                                selected={item.id === disk}
+                                sx={{
+                                    "&.Mui-selected": {
+                                        backgroundColor: "#e1e5ea",
+                                        borderRight: "3px solid #1976d2",
+                                    },
+                                }}
+                            >
                                 <ListItemIcon
                                     sx={{
                                         minWidth: "39px",

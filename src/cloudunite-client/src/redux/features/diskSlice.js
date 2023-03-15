@@ -7,8 +7,8 @@ const slice = createSlice({
     name: "disk",
     initialState: initialState(),
     reducers: {
-        setDisk: (state, { payload: { disk } }) => {
-            state.currentDisk = disk;
+        setDisk: (state, { payload }) => {
+            state.currentDisk = payload;
         },
         setDefaultDisk: (state) => initialState(),
     },

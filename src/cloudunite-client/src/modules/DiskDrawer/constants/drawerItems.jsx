@@ -16,13 +16,13 @@ export const disks = [
         id: disk.yandex,
         title: "Яндекс Диск",
         icon: <DiskIcon imgPath="/icons/yandex_disk.png" />,
-        to: "/",
+        to: "/disk/yandex",
     },
     {
         id: disk.onedrive,
         title: "OneDrive",
         icon: <DiskIcon imgPath="/icons/onedrive.png" />,
-        to: "/",
+        to: "/disk/onedrive",
     },
 ];
 

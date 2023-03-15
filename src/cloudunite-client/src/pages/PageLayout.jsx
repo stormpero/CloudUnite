@@ -4,7 +4,7 @@ import { DiskDrawer } from "../modules/DiskDrawer";
 import { Header } from "../modules/Header";
 import { Outlet } from "react-router-dom";
 import { ToolBar } from "../modules/ToolBar/components/ToolBar";
-import { FilesArea } from "../modules/Files/components/FilesArea";
+import { DiskSpace } from "../modules/DiskSpace/components/DiskSpace";
 import { ContextMenuWrapper } from "../modules/ContextMenu";
 
 export const PageLayout = () => {
@@ -31,7 +31,7 @@ export const PageLayout = () => {
             >
                 <ToolBar />
                 <ContextMenuWrapper>
-                    <FilesArea />
+                    <DiskSpace />
                 </ContextMenuWrapper>
                 <Outlet />
             </Box>

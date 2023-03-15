@@ -12,14 +12,14 @@ const HomePage = () => {
 
     return (
         <Box>
-            <Link to="folder1/folder2/folder3/folder1/folder2/folder3">
+            {/* <Link to="folder1/folder2/folder3/folder1/folder2/folder3">
                 3213
             </Link>
             <Button
                 onClick={() => {
                     getTest();
                 }}
-            >Тест</Button>
+            >Тест</Button> */}
         </Box>
     );
 };

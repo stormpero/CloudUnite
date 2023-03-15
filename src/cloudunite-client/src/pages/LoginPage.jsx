@@ -4,12 +4,17 @@ import SignUpButton from "../UI/SignUpButton";
 import { useLazyUserQuery } from "../app/Auth/store/api/authApi";
 import { setCredentials } from "../app/Auth/store/features/authSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { diskName } from "../constants/diskId";
+import { useSelectedDisk } from "../hooks/useSelectedDisk";
+import { useAuth } from "../app/Auth/hooks/useAuth";
 
 const LoginPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const selectedDisk = useSelectedDisk();
     const [getUsers] = useLazyUserQuery();
+    const auth = useAuth();
 
     const google = () => {
         const googleWindow = window.open(
@@ -25,7 +30,9 @@ const LoginPage = () => {
                         const user = await getUsers().unwrap();
                         console.log(user);
                         dispatch(setCredentials(user));
-                        navigate("/disk/google");
+                        navigate("/disk/" + diskName(selectedDisk), {
+                            replace: true,
+                        });
                     } catch (err) {
                         console.log(err);
                     }
@@ -34,6 +41,11 @@ const LoginPage = () => {
             }, 500);
         }
     };
+
+    if (auth) {
+        return <Navigate to="/disk/google" replace />;
+    }
+
     // #34a8c8
     return (
         <Box
