@@ -1,20 +1,15 @@
+import yandex from "../api/yandexapis/index.js";
 import YandexDiskService from "../service/disks/yandexDiskService.js";
+
 import oauthService from "../service/oauth/oauthService.js";
 import {CLIENT_URL_LOGIN_SUCCESS} from "../config/urls.js";
 
-const REDIRECT_URL = "http://localhost:7493/api/disk/yandex/callback";
 
 class YandexDiskController {
 
     async login(req, res, next) {
         try {
-            const params = new URLSearchParams({
-                response_type: 'code',
-                client_id: process.env.YANDEX_CLIENT_ID,
-                redirect_uri: REDIRECT_URL,
-                force_confirm: 'yes',
-            });
-            const url = `https://oauth.yandex.ru/authorize?${params.toString()}`;
+            const url = yandex.auth.generateAuthUrl();
             res.redirect(url);
         } catch (e) {
             next(e)
