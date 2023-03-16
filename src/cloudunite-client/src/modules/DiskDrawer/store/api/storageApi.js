@@ -1,8 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import {
-    URL_GOOGLE_STORAGEQUOTA,
-    URL_YANDEX_STORAGEQUOTA,
-} from "../../../../constants/apiUrls";
+import { URL_STORAGEQUOTA } from "../../../../constants/apiUrls";
+
 import { baseQueryWithReAuth } from "../../../../redux/api/baseQuery";
 
 export const storageQuotaApi = createApi({
@@ -22,9 +20,3 @@ export const storageQuotaApi = createApi({
 
 export const { useStorageQuotaQuery, useLazyStorageQuotaQuery } =
     storageQuotaApi; //TODO: delete useLazyStorageQuotaQuery
-
-export const URL_STORAGEQUOTA = [
-    URL_GOOGLE_STORAGEQUOTA,
-    URL_YANDEX_STORAGEQUOTA,
-    null, // TODO: Onedrive
-];

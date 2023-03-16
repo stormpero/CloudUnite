@@ -1,9 +1,6 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {
-    URL_AUTH_LOGOUT,
-    URL_GOOGLE_USER,
-    URL_ROOT,
-} from "../../../../constants/apiUrls";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { URL_AUTH_LOGOUT, URL_GOOGLE_USER } from "../../../../constants/apiUrls";
+
 import { baseQueryWithAuth } from "../../../../redux/api/baseQuery";
 
 export const apiAuth = createApi({

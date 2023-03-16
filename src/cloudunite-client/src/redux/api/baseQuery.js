@@ -3,7 +3,7 @@ import {
     setCredentials,
     setInitialState,
 } from "../../app/Auth/store/features/authSlice";
-import { URL_GOOGLE_USER, URL_ROOT } from "../../constants/apiUrls";
+import { URL_ROOT, URL_GOOGLE_USER } from "../../constants/apiUrls";
 
 const baseQueryWithCredentials = fetchBaseQuery({
     baseUrl: URL_ROOT,

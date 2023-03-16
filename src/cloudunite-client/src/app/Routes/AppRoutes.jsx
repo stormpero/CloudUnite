@@ -8,8 +8,8 @@ import { DiskStatus } from "../DiskStatus";
 
 export const AppRoutes = () => {
     return (
-        <DiskStatus>
-            <AuthStatus>
+        <AuthStatus>
+            <DiskStatus>
                 <Routes>
                     <Route path="/disk" element={<RequireAuth />}>
                         <Route path="google/*" element={<HomePage />} />
@@ -23,7 +23,7 @@ export const AppRoutes = () => {
                     />
                     <Route path="*" element={<h1>Not Found</h1>} />
                 </Routes>
-            </AuthStatus>
-        </DiskStatus>
+            </DiskStatus>
+        </AuthStatus>
     );
 };

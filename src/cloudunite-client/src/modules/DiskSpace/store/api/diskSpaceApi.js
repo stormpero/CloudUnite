@@ -1,8 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import {
-    URL_GOOGLE_FOLDERFILES,
-    URL_GOOGLE_FOLDERTREE,
-} from "../../../../constants/apiUrls";
+import { URL_GOOGLE_FOLDERFILES } from "../../../../constants/apiUrls/disks/googleDiskUrls";
+
 import { baseQueryWithReAuth } from "../../../../redux/api/baseQuery";
 
 export const diskSpaceApi = createApi({

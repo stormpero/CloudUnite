@@ -11,7 +11,6 @@ export const AuthStatus = ({ children }) => {
     const dispatch = useDispatch();
     const [getUsers, { isLoading }] = useLazyUserQuery();
     const [isLoadingAuth, setisLoadingAuth] = useState(true);
-    //TODO: clear route history after login
     useEffect(() => {
         const checkAuth = async () => {
             try {
