@@ -3,6 +3,8 @@ import React from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import HomeIcon from "@mui/icons-material/Home";
+import { useSelectedDisk } from "../../../hooks/useSelectedDisk";
+import { diskName } from "../../../constants/diskId";
 // const breadcrumbs = [
 //     <Link underline="hover" key="1" color="inherit" href="/">
 //         MUI
@@ -46,28 +48,30 @@ export const BreadcrumbString = () => {
         .split("/")
         .filter((x) => x)
         .slice(2);
+    const selectedDisk = useSelectedDisk();
 
-    //TODO: DISK STATIC
     return (
         <Breadcrumbs
             separator={<NavigateNextIcon fontSize="small" />}
             aria-label="breadcrumb"
             maxItems={5}
         >
-            <LinkRouter to="/disk/google">
+            <LinkRouter to={`/disk/${diskName(selectedDisk)}`}>
                 <HomeIcon sx={{ mr: 0.5, pb: "2px" }} fontSize="small" />
                 Мой диск
             </LinkRouter>
             {pathnames.map((pathname, index) => {
-                const routeTo = `/disk/google/${pathnames
+                const routeTo = `/disk/${diskName(selectedDisk)}/${pathnames
                     .slice(0, index + 1)
                     .join("/")}`;
+
                 const isLast = index === pathnames.length - 1;
+                const decodePathname = decodeURIComponent(pathname);
                 return isLast ? (
-                    <Typography key={routeTo}>{pathname}</Typography>
+                    <Typography key={routeTo}>{decodePathname}</Typography>
                 ) : (
                     <LinkRouter key={routeTo} to={routeTo}>
-                        {pathname}
+                        {decodePathname}
                     </LinkRouter>
                 );
             })}

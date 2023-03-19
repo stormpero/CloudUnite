@@ -8,6 +8,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { diskName } from "../constants/diskId";
 import { useSelectedDisk } from "../hooks/useSelectedDisk";
 import { useAuth } from "../app/Auth/hooks/useAuth";
+import { Container, Typography } from "@mui/material";
+import AdbIcon from "@mui/icons-material/Adb";
 
 const LoginPage = () => {
     const dispatch = useDispatch();
@@ -45,24 +47,32 @@ const LoginPage = () => {
     return (
         <Box
             sx={{
-                height: "100vh",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                backgroundImage: `url(${"/cloud.png"})`,
+                backgroundImage: `url(${"/loginbg.jpg"})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
+                height: "100vh",
             }}
         >
             <Box
                 sx={{
-                    bgcolor: "red",
-                    width: "300px",
-                    height: "450px",
-                    marginLeft: "40%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
                 }}
             >
-                <SignUpButton type="google" onClick={google} />
+                <Typography
+                    variant="h2"
+                    component="h1"
+                    color="#fff"
+                    fontWeight="500"
+                    sx={{ mb: 2 }}
+                >
+                    CloudUnite
+                </Typography>
+                <SignUpButton onClick={google} />
             </Box>
         </Box>
     );

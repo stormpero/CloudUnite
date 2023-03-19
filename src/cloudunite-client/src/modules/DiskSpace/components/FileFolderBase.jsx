@@ -1,16 +1,21 @@
 import { ButtonBase, Box, Typography } from "@mui/material";
 import React from "react";
 import { ContextMenuWrapperFile } from "../../ContextMenu/components/ContextMenuWrapperFile";
+import { Link as RouterLink } from "react-router-dom";
+import { useSelectedDisk } from "../../../hooks/useSelectedDisk";
+import { diskName } from "../../../constants/diskId";
 
-export const FileFolderBase = ({ icon, name }) => {
+export const FileFolderBase = ({ icon, data }) => {
     //TODO: ContexMenu in map
+    const selectedDisk = useSelectedDisk();
     return (
         <ContextMenuWrapperFile>
             <ButtonBase
+                component={RouterLink}
+                to={data.path.replace("disk:", diskName(selectedDisk))}
                 sx={{
                     borderRadius: "10px",
                 }}
-                onDoubleClick={() => console.log("DOUBLE CLICK")}
             >
                 <Box
                     sx={{
@@ -32,7 +37,7 @@ export const FileFolderBase = ({ icon, name }) => {
                             overflow: "hidden",
                         }}
                     >
-                        {name}
+                        {data.name}
                     </Typography>
                 </Box>
             </ButtonBase>

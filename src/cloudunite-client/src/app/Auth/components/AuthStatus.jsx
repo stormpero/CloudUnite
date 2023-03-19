@@ -9,15 +9,17 @@ import { Loading } from "../../../UI/Loading";
 
 export const AuthStatus = ({ children }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [getUsers, { isLoading }] = useLazyUserQuery();
     const [isLoadingAuth, setisLoadingAuth] = useState(true);
+
     useEffect(() => {
         const checkAuth = async () => {
             try {
                 const user = await getUsers().unwrap();
                 dispatch(setCredentials(user));
             } catch (err) {
-                console.log(err);
+                navigate("/login");
             } finally {
                 setisLoadingAuth(false);
             }

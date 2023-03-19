@@ -6,12 +6,15 @@ import { Outlet } from "react-router-dom";
 import { ToolBar } from "../modules/ToolBar/components/ToolBar";
 import { DiskSpace } from "../modules/DiskSpace/components/DiskSpace";
 import { ContextMenuWrapper } from "../modules/ContextMenu";
+import { useSelectedDisk } from "../hooks/useSelectedDisk";
 
 export const PageLayout = () => {
     const [mobileDrawerOpen, mobileDrawerToggle] = useReducer(
         (state) => !state,
         false
     );
+
+    const disk = useSelectedDisk();
 
     return (
         <Box sx={{ display: "flex" }}>
@@ -30,9 +33,12 @@ export const PageLayout = () => {
                 }}
             >
                 <ToolBar />
-                <ContextMenuWrapper>
-                    <DiskSpace />
-                </ContextMenuWrapper>
+                {disk === 1 ? (
+                    <ContextMenuWrapper>
+                        <DiskSpace />
+                    </ContextMenuWrapper>
+                ) : null}
+
                 <Outlet />
             </Box>
         </Box>

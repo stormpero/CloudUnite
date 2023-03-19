@@ -1,24 +1,24 @@
-import { Box, Button } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 
-const service = {
-    google: {
-        text: "Sign in with Google",
-        img: "https://d2ilpn13gulr31.cloudfront.net/blog/wp-content/uploads/2018/12/drive_featured.jpg",
-    },
-};
-
-const SignUpButton = ({ type, ...props }) => {
+const SignUpButton = (props) => {
     return (
         <Button
             {...props}
+            sx={{
+                backgroundColor: "#fff",
+                "&:hover": {
+                    backgroundColor: "#f8faff",
+                },
+            }}
             variant="outlined"
             startIcon={
-                <Box component="img" height="30px" src={service[type].img} />
+                <Box component="img" height="30px" src="/googleIcon.png" />
             }
         >
-            {service[type].text}
+            <Typography variant="h6" fontSize="16px">
+                Вход с аккаунтом Google
+            </Typography>
         </Button>
     );
 };

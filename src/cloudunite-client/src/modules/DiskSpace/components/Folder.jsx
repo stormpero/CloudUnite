@@ -8,7 +8,7 @@ export const FolderElement = ({ data }) => {
     return (
         <FileFolderBase
             icon={<FolderIcon sx={{ m: 2, color: "#787a7c" }} />}
-            name={data.name}
+            data={data}
         />
     );
 };
