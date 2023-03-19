@@ -7,9 +7,10 @@ const yandexDiskRouter = new Router();
 
 yandexDiskRouter.get("/login", YandexDiskController.login);
 yandexDiskRouter.get("/callback", YandexDiskController.callback); //http://localhost:7493/api/disk/yandex/callback
+//TODO: На два router
 yandexDiskRouter.get("/storageQuota", authMiddleware, YandexDiskController.storageQuota);
 
-// yandexDiskRouter.get("/list/folderFiles", GoogleController.folderFiles);
+yandexDiskRouter.get("/list/folderFiles",authMiddleware, YandexDiskController.folderFiles);
 // yandexDiskRouter.get("/list/folderTree", GoogleController.folderTree);
 
 export default yandexDiskRouter;

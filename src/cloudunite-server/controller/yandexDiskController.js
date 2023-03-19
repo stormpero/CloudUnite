@@ -27,21 +27,20 @@ class YandexDiskController {
         }
     }
 
-    // async refreshToken(req, res, next) {
-    //     try {
-    //         const {refreshToken} = req.cookies;
-    //         const data = await YandexDiskService.refreshToken(refreshToken);
-    //         return
-    //         //return res.redirect(CLIENT_URL_LOGIN_SUCCESS)
-    //     } catch (e) {
-    //         next(e)
-    //     }
-    // }
-
     async storageQuota(req, res, next) {
         try {
             const {user} = req;
             const result = await YandexDiskService.storageQuota(user.id);
+            return res.status(200).json(result)
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    async folderFiles(req, res, next) {
+        try {
+            const {user, query: {folderId}} = req;
+            const result = await YandexDiskService.folderFiles(user.id, folderId);
             return res.status(200).json(result)
         } catch (e) {
             next(e)
