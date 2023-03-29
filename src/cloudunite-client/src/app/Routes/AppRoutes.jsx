@@ -1,10 +1,14 @@
 import React from "react";
 import { Route, Routes } from "react-router";
+import { DiskSpaceGoogle, DiskSpaceYandex } from "../../modules/DiskSpace";
 import HomePage from "../../pages/HomePage";
 import LoginPage from "../../pages/LoginPage";
 import { LoginSuccessPage } from "../../pages/LoginSuccessPage";
 import { AuthStatus, RequireAuth } from "../Auth";
 import { DiskStatus } from "../DiskStatus";
+import { GoogleDiskRoute } from "./disks/GoogleDiskRoute";
+import { OneDriveRoute } from "./disks/OneDriveRoute";
+import { YandexDiskRoute } from "./disks/YandexDiskRoute";
 
 export const AppRoutes = () => {
     return (
@@ -12,9 +16,9 @@ export const AppRoutes = () => {
             <DiskStatus>
                 <Routes>
                     <Route path="/disk" element={<RequireAuth />}>
-                        <Route path="google/*" element={<HomePage />} />
-                        <Route path="yandex/*" element={<HomePage />} />
-                        <Route path="onedrive/*" element={null} />
+                        <Route path="google/*" element={<GoogleDiskRoute />} />
+                        <Route path="yandex/*" element={<YandexDiskRoute />} />
+                        <Route path="onedrive/*" element={<OneDriveRoute />} />
                     </Route>
                     <Route path="/login" element={<LoginPage />} />
                     <Route
@@ -27,3 +31,4 @@ export const AppRoutes = () => {
         </AuthStatus>
     );
 };
+//TODO: Not found page

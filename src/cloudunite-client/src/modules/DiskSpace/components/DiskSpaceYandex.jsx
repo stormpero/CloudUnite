@@ -9,7 +9,7 @@ import { FilesGrid } from "./FilesGrid";
 import { FolderElement } from "./Folder";
 import { FoldersGrid } from "./FoldersGrid";
 
-export const DiskSpace = () => {
+export const DiskSpaceYandex = () => {
     const [files, setFiles] = useState([]);
     const [getFolderFiles] = useLazyGetFolderFilesQuery();
     const [loading, setLoading] = useState(true);

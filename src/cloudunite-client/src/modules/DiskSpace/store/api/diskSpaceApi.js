@@ -14,7 +14,13 @@ export const diskSpaceApi = createApi({
                 params: { folderId },
             }),
         }),
+        getFolderFilesGoogle: builder.query({
+            query: (folderId) => ({
+                url: URL_GOOGLE_FOLDERFILES,
+                params: { folderId },
+            }),
+        }),
     }),
 });
 
-export const { useLazyGetFolderFilesQuery } = diskSpaceApi;
+export const { useLazyGetFolderFilesQuery, useGetFolderFilesGoogleQuery } = diskSpaceApi;

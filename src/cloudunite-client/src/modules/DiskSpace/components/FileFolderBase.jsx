@@ -12,7 +12,7 @@ export const FileFolderBase = ({ icon, data }) => {
         <ContextMenuWrapperFile>
             <ButtonBase
                 component={RouterLink}
-                to={data.path.replace("disk:", diskName(selectedDisk))}
+                to={selectedDisk === 1 ? data.path.replace("disk:/", "") : null}
                 sx={{
                     borderRadius: "10px",
                 }}

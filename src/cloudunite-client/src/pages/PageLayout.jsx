@@ -4,7 +4,6 @@ import { DiskDrawer } from "../modules/DiskDrawer";
 import { Header } from "../modules/Header";
 import { Outlet } from "react-router-dom";
 import { ToolBar } from "../modules/ToolBar/components/ToolBar";
-import { DiskSpace } from "../modules/DiskSpace/components/DiskSpace";
 import { ContextMenuWrapper } from "../modules/ContextMenu";
 import { useSelectedDisk } from "../hooks/useSelectedDisk";
 
@@ -33,13 +32,10 @@ export const PageLayout = () => {
                 }}
             >
                 <ToolBar />
-                {disk === 1 ? (
-                    <ContextMenuWrapper>
-                        <DiskSpace />
-                    </ContextMenuWrapper>
-                ) : null}
-
-                <Outlet />
+                {/* {disk === 1 ? <DiskSpace /> : null} */}
+                <ContextMenuWrapper>
+                    <Outlet />
+                </ContextMenuWrapper>
             </Box>
         </Box>
     );

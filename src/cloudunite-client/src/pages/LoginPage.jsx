@@ -40,7 +40,7 @@ const LoginPage = () => {
     };
 
     if (auth) {
-        return <Navigate to="/disk/google" replace />;
+        return <Navigate to="/disk/google/my" replace />;
     }
 
     // #34a8c8

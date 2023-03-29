@@ -1,69 +1,70 @@
-import { Breadcrumbs, Typography, Link } from "@mui/material";
+import { Breadcrumbs as MuiBreadcrumbs, Typography, Link } from "@mui/material";
 import React from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import HomeIcon from "@mui/icons-material/Home";
 import { useSelectedDisk } from "../../../hooks/useSelectedDisk";
-import { diskName } from "../../../constants/diskId";
-// const breadcrumbs = [
-//     <Link underline="hover" key="1" color="inherit" href="/">
-//         MUI
-//     </Link>,
-//     <Link
-//         underline="hover"
-//         key="2"
-//         color="inherit"
-//         href="/material-ui/getting-started/installation/"
-//     >
-//         Core
-//     </Link>,
-//     <Typography key="3" color="text.primary">
-//         Breadcrumb
-//     </Typography>,
-// ];
+import { diskName, menu } from "../../../constants/diskId";
+import { LinkRouter } from "./LinkRouter";
+import { useSelectedDiskMenu } from "../../../hooks/useSelectedDiskMenu";
 
-const LinkRouter = (props) => {
-    return (
-        <Link
-            {...props}
-            underline="none"
-            color="inherit"
-            sx={{
-                padding: "5px",
-                borderRadius: "10px",
-                "&:hover": {
-                    backgroundColor: "#ebebeb",
-                },
-                display: "flex",
-                alignItems: "center",
-            }}
-            component={RouterLink}
-        />
-    );
-};
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import FolderOpenOutlinedIcon from "@mui/icons-material/FolderOpenOutlined";
+
+export const menuItems = [
+    {
+        id: menu.my,
+        title: "Мой диск",
+        to: "/my",
+        icon: (
+            <FolderOpenOutlinedIcon
+                sx={{ mr: 0.5, pb: "2px" }}
+                fontSize="small"
+            />
+        ),
+    },
+    {
+        id: menu.recent,
+        title: "Недавние",
+        to: "/recent",
+        icon: <AccessTimeIcon sx={{ mr: 0.5, pb: "2px" }} fontSize="small" />,
+    },
+    {
+        id: menu.trash,
+        title: "Корзина",
+        to: "/trash",
+        icon: (
+            <DeleteOutlineOutlinedIcon
+                sx={{ mr: 0.5, pb: "2px" }}
+                fontSize="small"
+            />
+        ),
+    },
+];
 
 export const BreadcrumbString = () => {
     const location = useLocation();
     const pathnames = location.pathname
         .split("/")
         .filter((x) => x)
-        .slice(2);
-    const selectedDisk = useSelectedDisk();
+        .slice(3);
+    const diskMenu = useSelectedDiskMenu();
 
     return (
-        <Breadcrumbs
+        <MuiBreadcrumbs
             separator={<NavigateNextIcon fontSize="small" />}
             aria-label="breadcrumb"
             maxItems={5}
         >
-            <LinkRouter to={`/disk/${diskName(selectedDisk)}`}>
-                <HomeIcon sx={{ mr: 0.5, pb: "2px" }} fontSize="small" />
-                Мой диск
+            <LinkRouter to={`/disk/${diskName(diskMenu.selectedDisk)}/my`}>
+                {menuItems[diskMenu.currentMenu].icon}
+                {menuItems[diskMenu.currentMenu].title}
             </LinkRouter>
             {pathnames.map((pathname, index) => {
-                const routeTo = `/disk/${diskName(selectedDisk)}/${pathnames
-                    .slice(0, index + 1)
-                    .join("/")}`;
+                const routeTo = `/disk/${diskName(
+                    diskMenu.selectedDisk
+                )}/my/${pathnames.slice(0, index + 1).join("/")}`;
 
                 const isLast = index === pathnames.length - 1;
                 const decodePathname = decodeURIComponent(pathname);
@@ -75,6 +76,6 @@ export const BreadcrumbString = () => {
                     </LinkRouter>
                 );
             })}
-        </Breadcrumbs>
+        </MuiBreadcrumbs>
     );
 };

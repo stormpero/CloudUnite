@@ -1,3 +1,4 @@
+import AddIcon from "@mui/icons-material/Add";
 import {
     Box,
     Divider,
@@ -10,18 +11,19 @@ import {
     Typography,
 } from "@mui/material";
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
-import { useSelectedDisk } from "../../../hooks/useSelectedDisk";
-import { useUserDisks } from "../../../hooks/useUserDisks";
-import { disks, menu } from "../constants/drawerItems";
-import DiskSpaceInfo from "./DiskSpaceInfo";
-import AddIcon from "@mui/icons-material/Add";
-import { setCredentials } from "../../../app/Auth/store/features/authSlice";
 import { useDispatch } from "react-redux";
+import { Link as RouterLink } from "react-router-dom";
 import { useLazyUserQuery } from "../../../app/Auth/store/api/authApi";
+import { setCredentials } from "../../../app/Auth/store/features/authSlice";
+import { diskName } from "../../../constants/diskId";
+import { useSelectedDisk } from "../../../hooks/useSelectedDisk";
+import { useSelectedDiskMenu } from "../../../hooks/useSelectedDiskMenu";
+import { useUserDisks } from "../../../hooks/useUserDisks";
+import { disks, menus } from "../constants/drawerItems";
+import DiskSpaceInfo from "./DiskSpaceInfo";
 
 export const DiskDrawerItems = () => {
-    const disk = useSelectedDisk();
+    const diskMenu = useSelectedDiskMenu();
     const userDisks = useUserDisks();
     const userDiskArray = Object.values(userDisks);
 
@@ -77,7 +79,7 @@ export const DiskDrawerItems = () => {
                                 component={RouterLink}
                                 to={item.to}
                                 disabled={!userDiskArray[item.id]}
-                                selected={item.id === disk}
+                                selected={item.id === diskMenu.currentDisk}
                                 sx={{
                                     textDecoration: "none",
                                     color: "text.primary",
@@ -109,20 +111,29 @@ export const DiskDrawerItems = () => {
                 </List>
                 <Divider />
                 <List>
-                    {menu.map((item) => (
+                    {menus.map((item) => (
                         <ListItem
                             key={item.title}
-                            component={RouterLink}
-                            to={item.to}
                             disablePadding
-                            sx={{
-                                textDecoration: "none",
-                                color: "text.primary",
-                                marginTop: "4px",
-                                marginBottom: "7px",
-                            }}
+                            disableGutters
                         >
-                            <ListItemButton>
+                            <ListItemButton
+                                component={RouterLink}
+                                to={`/disk/${diskName(diskMenu.currentDisk)}${
+                                    item.to
+                                }`}
+                                selected={item.id === diskMenu.currentMenu}
+                                sx={{
+                                    textDecoration: "none",
+                                    color: "text.primary",
+                                    paddingTop: "12px",
+                                    paddingBottom: "12px",
+                                    "&.Mui-selected": {
+                                        backgroundColor: "#e1e5ea",
+                                        borderRight: "3px solid #1976d2",
+                                    },
+                                }}
+                            >
                                 <ListItemIcon
                                     sx={{
                                         minWidth: "39px",
