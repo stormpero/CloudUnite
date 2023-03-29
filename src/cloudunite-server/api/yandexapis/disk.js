@@ -20,3 +20,20 @@ export const getFolderFiles = async (folder, token) => {
     });
     return res.data?._embedded;
 }
+
+export const getRecentFiles = async (token) => {
+    const res = await axios.get('https://cloud-api.yandex.net/v1/disk/resources/last-uploaded', {
+        headers: OAuthHeader(token),
+    });
+    return res.data;
+}
+
+export const getTrashFiles = async (folder, token) => {
+    const res = await axios.get('https://cloud-api.yandex.net/v1/disk/trash/resources', {
+        headers: OAuthHeader(token),
+        params: {
+            path: folder
+        }
+    });
+    return res.data?._embedded;
+}

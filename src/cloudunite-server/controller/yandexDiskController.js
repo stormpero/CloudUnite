@@ -47,6 +47,26 @@ class YandexDiskController {
         }
     }
 
+    async recentFiles(req, res, next) {
+        try {
+            const {user} = req;
+            const result = await YandexDiskService.recentFiles(user.id);
+            return res.status(200).json(result)
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    async trashFiles(req, res, next) {
+        try {
+            const {user, query: {folderId}} = req;
+            const result = await YandexDiskService.trashFiles(user.id, folderId);
+            return res.status(200).json(result)
+        } catch (e) {
+            next(e)
+        }
+    }
+
 }
 
 export default new YandexDiskController();

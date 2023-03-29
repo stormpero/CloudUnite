@@ -11,7 +11,8 @@ yandexDiskRouter.get("/callback", YandexDiskController.callback); //http://local
 yandexDiskRouter.get("/storageQuota", authMiddleware, YandexDiskController.storageQuota);
 
 yandexDiskRouter.get("/list/folderFiles",authMiddleware, YandexDiskController.folderFiles);
-// yandexDiskRouter.get("/list/folderTree", GoogleController.folderTree);
+yandexDiskRouter.get("/list/recentFiles",authMiddleware, YandexDiskController.recentFiles);
+yandexDiskRouter.get("/list/trashFiles",authMiddleware, YandexDiskController.trashFiles);
 
 export default yandexDiskRouter;
 

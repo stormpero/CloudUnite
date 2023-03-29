@@ -6,7 +6,7 @@ import axios from "axios";
 import UserRepository from "../../database/repository/userRepository.js";
 import tokenService from "../oauth/tokenService.js";
 import {ApiError} from "../../exceptions/apiError.js";
-import {getFolderFiles} from "../../api/yandexapis/disk.js";
+import {getFolderFiles, getTrashFiles} from "../../api/yandexapis/disk.js";
 
 class YandexDiskService {
 
@@ -38,7 +38,6 @@ class YandexDiskService {
         const user = await userRepository.findOneById(id, UserTokens);
 
         const data = await yandex.disk.getAbout(user.user_token.yandexAccessToken);
-        console.log("data", data)
         return { storageQuota: {
                 usage: data?.used_space,
                 limit: data?.total_space
@@ -50,6 +49,20 @@ class YandexDiskService {
         const user = await userRepository.findOneById(id, UserTokens);
 
         const data = await yandex.disk.getFolderFiles(folder, user.user_token.yandexAccessToken);
+        return data;
+    }
+
+    async recentFiles(id) {
+        const user = await userRepository.findOneById(id, UserTokens);
+
+        const data = await yandex.disk.getRecentFiles(user.user_token.yandexAccessToken);
+        return data;
+    }
+
+    async trashFiles(id, folder) {
+        const user = await userRepository.findOneById(id, UserTokens);
+
+        const data = await yandex.disk.getTrashFiles(folder, user.user_token.yandexAccessToken);
         return data;
     }
 
