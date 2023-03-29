@@ -57,13 +57,13 @@ export const BreadcrumbString = () => {
             aria-label="breadcrumb"
             maxItems={5}
         >
-            <LinkRouter to={`/disk/${diskName(diskMenu.selectedDisk)}/my`}>
+            <LinkRouter to={`/disk/${diskName(diskMenu.currentDisk)}/my`}>
                 {menuItems[diskMenu.currentMenu].icon}
                 {menuItems[diskMenu.currentMenu].title}
             </LinkRouter>
             {pathnames.map((pathname, index) => {
                 const routeTo = `/disk/${diskName(
-                    diskMenu.selectedDisk
+                    diskMenu.currentDisk
                 )}/my/${pathnames.slice(0, index + 1).join("/")}`;
 
                 const isLast = index === pathnames.length - 1;

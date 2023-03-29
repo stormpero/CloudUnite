@@ -1,18 +1,15 @@
 import { ButtonBase, Box, Typography } from "@mui/material";
 import React from "react";
-import { ContextMenuWrapperFile } from "../../ContextMenu/components/ContextMenuWrapperFile";
 import { Link as RouterLink } from "react-router-dom";
-import { useSelectedDisk } from "../../../hooks/useSelectedDisk";
-import { diskName } from "../../../constants/diskId";
+import { ContextMenuWrapperFile } from "../../ContextMenu/components/ContextMenuWrapperFile";
 
 export const FileFolderBase = ({ icon, data }) => {
     //TODO: ContexMenu in map
-    const selectedDisk = useSelectedDisk();
     return (
         <ContextMenuWrapperFile>
             <ButtonBase
                 component={RouterLink}
-                to={selectedDisk === 1 ? data.path.replace("disk:/", "") : null}
+                to={data?.path}
                 sx={{
                     borderRadius: "10px",
                 }}

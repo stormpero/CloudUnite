@@ -1,6 +1,5 @@
-import { Typography, Grid } from "@mui/material";
 import React from "react";
-import { TYPE_FOLDER } from "../../../constants/googleFileTypes";
+import { Grid, Typography } from "@mui/material";
 import { FileElement } from "./File";
 
 export const FilesGrid = ({ files }) => {

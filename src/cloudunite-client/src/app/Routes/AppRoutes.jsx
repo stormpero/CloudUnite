@@ -1,7 +1,5 @@
 import React from "react";
 import { Route, Routes } from "react-router";
-import { DiskSpaceGoogle, DiskSpaceYandex } from "../../modules/DiskSpace";
-import HomePage from "../../pages/HomePage";
 import LoginPage from "../../pages/LoginPage";
 import { LoginSuccessPage } from "../../pages/LoginSuccessPage";
 import { AuthStatus, RequireAuth } from "../Auth";

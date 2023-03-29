@@ -1,12 +1,15 @@
 import React from "react";
+import { DiskTrashYandex } from "../../../pages/DiskArea";
+import { DiskFilesYandex } from "../../../pages/DiskArea/DiskFiles";
+import { DiskRecentYandex } from "../../../pages/DiskArea/DiskRecent";
 import { DiskRoute } from "../DiskRoute";
 
 export const YandexDiskRoute = () => {
     return (
         <DiskRoute
-            myElement={<h1> Yandex myElement </h1>}
-            recentElement={<h1> Yandex recentElement </h1>}
-            trashElement={<h1> Yandex trashElement </h1>}
+            myElement={<DiskFilesYandex />}
+            recentElement={<DiskRecentYandex />}
+            trashElement={<DiskTrashYandex />}
         />
     );
 };

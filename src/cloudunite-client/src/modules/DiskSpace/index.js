@@ -1,2 +1,1 @@
-export { DiskSpaceGoogle } from "./components/DiskSpaceGoogle";
-export { DiskSpaceYandex } from "./components/DiskSpaceYandex";
+export { DiskSpace } from "./components/DiskSpace";

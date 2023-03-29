@@ -3,13 +3,14 @@ import { storageQuotaApi } from "../modules/DiskDrawer";
 import { apiAuth } from "../app/Auth/store/api/authApi";
 import authReducer from "../app/Auth/store/features/authSlice";
 import diskReducer from "./features/diskSlice";
-import { diskSpaceApi } from "../modules/DiskSpace/store/api/diskSpaceApi";
+import { diskGoogleApi, diskYandexApi } from "../pages/DiskArea";
 
 export const store = configureStore({
     reducer: {
         [apiAuth.reducerPath]: apiAuth.reducer,
         [storageQuotaApi.reducerPath]: storageQuotaApi.reducer,
-        [diskSpaceApi.reducerPath]: diskSpaceApi.reducer,
+        [diskGoogleApi.reducerPath]: diskGoogleApi.reducer,
+        [diskYandexApi.reducerPath]: diskYandexApi.reducer,
         auth: authReducer,
         disk: diskReducer,
     },
@@ -17,6 +18,7 @@ export const store = configureStore({
         getDefaultMiddleware().concat([
             apiAuth.middleware,
             storageQuotaApi.middleware,
-            diskSpaceApi.middleware,
+            diskGoogleApi.middleware,
+            diskYandexApi.middleware,
         ]),
 });
