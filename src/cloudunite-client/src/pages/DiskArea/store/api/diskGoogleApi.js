@@ -1,5 +1,9 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { URL_GOOGLE_FOLDERFILES } from "../../../../constants/apiUrls/disks/googleDiskUrls";
+import {
+    URL_GOOGLE_FOLDERFILES,
+    URL_GOOGLE_RECENTFILES,
+    URL_GOOGLE_TRASHFILES,
+} from "../../../../constants/apiUrls/disks/googleDiskUrls";
 
 import { baseQueryWithReAuth } from "../../../../redux/api/baseQuery";
 
@@ -13,8 +17,22 @@ export const diskGoogleApi = createApi({
                 params: { folderId },
             }),
         }),
+        getRecentFiles: builder.query({
+            query: () => ({
+                url: URL_GOOGLE_RECENTFILES,
+            }),
+        }),
+        getTrashFiles: builder.query({
+            query: () => ({
+                url: URL_GOOGLE_TRASHFILES,
+            }),
+        }),
     }),
 });
 
-export const { useGetFolderFilesQuery, useLazyGetFolderFilesQuery } =
-    diskGoogleApi;
+export const {
+    useGetFolderFilesQuery,
+    useLazyGetFolderFilesQuery,
+    useGetTrashFilesQuery,
+    useGetRecentFilesQuery,
+} = diskGoogleApi;

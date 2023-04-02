@@ -1,11 +1,11 @@
 import React from "react";
+import { Loading } from "../../../../UI/Loading";
 import { TYPE_FOLDER } from "../../../../constants/googleFileTypes";
 import { DiskSpace } from "../../../../modules/DiskSpace";
-import { Loading } from "../../../../UI/Loading";
-import { useGetFolderFilesQuery } from "../../store/api/diskGoogleApi";
+import { useGetRecentFilesQuery } from "../../store/api/diskGoogleApi";
 
 export const DiskRecentGoogle = () => {
-    const { data, isLoading } = useGetFolderFilesQuery("root");
+    const { data, isLoading } = useGetRecentFilesQuery();
 
     if (isLoading) {
         return <Loading />;

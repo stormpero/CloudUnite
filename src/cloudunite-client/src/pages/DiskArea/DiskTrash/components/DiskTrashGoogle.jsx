@@ -2,10 +2,13 @@ import React from "react";
 import { TYPE_FOLDER } from "../../../../constants/googleFileTypes";
 import { DiskSpace } from "../../../../modules/DiskSpace";
 import { Loading } from "../../../../UI/Loading";
-import { useGetFolderFilesQuery } from "../../store/api/diskGoogleApi";
+import {
+    useGetFolderFilesQuery,
+    useGetTrashFilesQuery,
+} from "../../store/api/diskGoogleApi";
 
 export const DiskTrashGoogle = () => {
-    const { data, isLoading } = useGetFolderFilesQuery("root");
+    const { data, isLoading } = useGetTrashFilesQuery();
 
     if (isLoading) {
         return <Loading />;

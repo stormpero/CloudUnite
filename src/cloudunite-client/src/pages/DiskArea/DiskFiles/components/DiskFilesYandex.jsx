@@ -52,5 +52,10 @@ export const DiskFilesYandex = () => {
             ...el,
             id: el.resource_id,
         }));
+    console.log(
+        "🚀 ~ file: DiskFilesYandex.jsx:55 ~ DiskFilesYandex ~ filesArray:",
+        filesArray
+    );
+
     return <DiskSpace dirArray={dirArray} filesArray={filesArray} />;
 };

@@ -28,7 +28,6 @@ export const PageLayout = () => {
                     height: "calc(100vh-250px)",
                 }}
             >
-                <ToolBar />
                 <ContextMenuWrapper>
                     <Outlet />
                 </ContextMenuWrapper>

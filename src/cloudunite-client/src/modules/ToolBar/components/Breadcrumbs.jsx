@@ -61,7 +61,7 @@ export const BreadcrumbString = () => {
                 {menuItems[diskMenu.currentMenu].icon}
                 {menuItems[diskMenu.currentMenu].title}
             </LinkRouter>
-            {pathnames.map((pathname, index) => {
+            {diskMenu.currentDisk === 1 && pathnames.map((pathname, index) => {
                 const routeTo = `/disk/${diskName(
                     diskMenu.currentDisk
                 )}/my/${pathnames.slice(0, index + 1).join("/")}`;
