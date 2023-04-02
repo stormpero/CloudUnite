@@ -11,7 +11,9 @@ googleDiskRouter.use(authMiddleware)
 googleDiskRouter.get("/storageQuota", GoogleDiskController.storageQuota);
 
 googleDiskRouter.get("/list/folderFiles", GoogleDiskController.folderFiles);
-googleDiskRouter.get("/list/folderTree", GoogleDiskController.folderTree);
+googleDiskRouter.get("/list/recentFiles", GoogleDiskController.recentFiles);
+googleDiskRouter.get("/list/trashFiles", GoogleDiskController.trashFiles);
+
 
 export default googleDiskRouter;
 
