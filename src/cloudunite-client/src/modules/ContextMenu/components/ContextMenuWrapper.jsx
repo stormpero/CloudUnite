@@ -3,7 +3,11 @@ import React, { useState } from "react";
 import { ContextMenu } from "./ContextMenu";
 import { ContextMenuAreaItems } from "./ContextMenuAreaItems";
 
-export const ContextMenuWrapper = ({ children }) => {
+export const ContextMenuWrapper = ({
+    funcNewFolder,
+    funcUploadFiles,
+    children,
+}) => {
     const [contextMenu, setContextMenu] = useState(null);
 
     const handleContextMenu = (event) => {
@@ -32,7 +36,11 @@ export const ContextMenuWrapper = ({ children }) => {
                 contextMenu={contextMenu}
                 hMenuClose={handleContextMenuClose}
             >
-                <ContextMenuAreaItems hMenuClose={handleContextMenuClose} />
+                <ContextMenuAreaItems
+                    funcNewFolder={funcNewFolder}
+                    funcUploadFiles={funcUploadFiles}
+                    hMenuClose={handleContextMenuClose}
+                />
             </ContextMenu>
         </Box>
     );

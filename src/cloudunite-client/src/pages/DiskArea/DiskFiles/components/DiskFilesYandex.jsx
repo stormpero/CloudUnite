@@ -2,60 +2,39 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { DiskSpace } from "../../../../modules/DiskSpace";
 import { Loading } from "../../../../UI/Loading";
-import { useLazyGetFolderFilesQuery } from "../../store/api/diskYandexApi";
+import { useGetFolderFilesQuery } from "../../store/api/diskYandexApi";
 
 export const DiskFilesYandex = () => {
-    const [files, setFiles] = useState([]);
-    const [getFolderFiles] = useLazyGetFolderFilesQuery();
-    const [loading, setLoading] = useState(true);
     const location = useLocation();
+    let path = decodeURIComponent(location.pathname)
+        .split("/")
+        .filter((x) => x)
+        .slice(3)
+        .join("/");
+
+    const { data, isLoading, refetch } = useGetFolderFilesQuery(path || "/");
 
     useEffect(() => {
-        setLoading(true);
-        let path = decodeURIComponent(location.pathname)
-            .split("/")
-            .filter((x) => x)
-            .slice(3)
-            .join("/");
-
-        if (path === "") {
-            path = "/";
-        }
-
-        const getFolderFilesAsync = async () => {
-            try {
-                const filesData = await getFolderFiles(path, true).unwrap();
-                setFiles(filesData.items);
-            } catch (error) {
-                console.log(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        getFolderFilesAsync();
+        refetch();
     }, [location]);
 
-    if (loading) {
+    if (isLoading) {
         return <Loading />;
     }
 
-    const dirArray = files
+    const dirArray = data.items
         .filter((el) => el.type === "dir")
         .map((el) => ({
             ...el,
             id: el.resource_id,
             path: el.path.replace("disk:/", ""),
         }));
-    const filesArray = files
+    const filesArray = data.items
         .filter((el) => el.type !== "dir")
         .map((el) => ({
             ...el,
             id: el.resource_id,
         }));
-    console.log(
-        "🚀 ~ file: DiskFilesYandex.jsx:55 ~ DiskFilesYandex ~ filesArray:",
-        filesArray
-    );
 
     return <DiskSpace dirArray={dirArray} filesArray={filesArray} />;
 };
