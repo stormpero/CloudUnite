@@ -1,5 +1,5 @@
 import {getUserInfo, getToken, generateAuthUrl} from "./auth.js";
-import {getAbout, getFolderFiles, getRecentFiles, getTrashFiles} from "./disk.js";
+import {getAbout, getFolderFiles, getRecentFiles, getTrashFiles, addNewFolder} from "./disk.js";
 
 const auth = {
     generateAuthUrl,
@@ -11,7 +11,8 @@ const disk = {
     getAbout,
     getFolderFiles,
     getRecentFiles,
-    getTrashFiles
+    getTrashFiles,
+    addNewFolder
 }
 
 export default {

@@ -37,3 +37,14 @@ export const getTrashFiles = async (folder, token) => {
     });
     return res.data?._embedded;
 }
+
+
+export const addNewFolder = async (folderPath, token) => {
+    const res = await axios.put('https://cloud-api.yandex.net/v1/disk/resources', null, {
+        headers: OAuthHeader(token),
+        params: {
+            path: folderPath
+        }
+    });
+    return res.data;
+}

@@ -6,7 +6,7 @@ import axios from "axios";
 import UserRepository from "../../database/repository/userRepository.js";
 import tokenService from "../oauth/tokenService.js";
 import {ApiError} from "../../exceptions/apiError.js";
-import {getFolderFiles, getTrashFiles} from "../../api/yandexapis/disk.js";
+import {addNewFolder, getFolderFiles, getTrashFiles} from "../../api/yandexapis/disk.js";
 
 class YandexDiskService {
 
@@ -66,6 +66,12 @@ class YandexDiskService {
         return data;
     }
 
+    async newFolder(id, folderPath) {
+        const user = await userRepository.findOneById(id, UserTokens);
+
+        const data = await yandex.disk.addNewFolder(folderPath, user.user_token.yandexAccessToken);
+        //return data;
+    }
 
 }
 export default new YandexDiskService();

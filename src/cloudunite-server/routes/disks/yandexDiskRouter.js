@@ -14,5 +14,7 @@ yandexDiskRouter.get("/list/folderFiles",authMiddleware, YandexDiskController.fo
 yandexDiskRouter.get("/list/recentFiles",authMiddleware, YandexDiskController.recentFiles);
 yandexDiskRouter.get("/list/trashFiles",authMiddleware, YandexDiskController.trashFiles);
 
+yandexDiskRouter.post("/newFolder", authMiddleware, YandexDiskController.newFolder);
+
 export default yandexDiskRouter;
 

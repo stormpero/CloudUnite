@@ -67,6 +67,16 @@ class YandexDiskController {
         }
     }
 
+    async newFolder(req, res, next) {
+        try {
+            const {user, body: {folderPath}} = req;
+            const result = await YandexDiskService.newFolder(user.id, folderPath);
+            return res.status(200).json(result)
+        } catch (e) {
+            next(e)
+        }
+    }
+
 }
 
 export default new YandexDiskController();
