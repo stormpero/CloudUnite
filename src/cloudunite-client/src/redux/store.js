@@ -4,6 +4,7 @@ import { apiAuth } from "../app/Auth/store/api/authApi";
 import authReducer from "../app/Auth/store/features/authSlice";
 import diskReducer from "./features/diskSlice";
 import { diskGoogleApi, diskYandexApi } from "../pages/DiskArea";
+import { friendsApi } from "../modules/FriendsDrawer/store/api/friendsApi";
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         [storageQuotaApi.reducerPath]: storageQuotaApi.reducer,
         [diskGoogleApi.reducerPath]: diskGoogleApi.reducer,
         [diskYandexApi.reducerPath]: diskYandexApi.reducer,
+        [friendsApi.reducerPath]: friendsApi.reducer,
         auth: authReducer,
         disk: diskReducer,
     },
@@ -20,5 +22,6 @@ export const store = configureStore({
             storageQuotaApi.middleware,
             diskGoogleApi.middleware,
             diskYandexApi.middleware,
+            friendsApi.middleware,
         ]),
 });

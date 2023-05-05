@@ -7,7 +7,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import DownloadIcon from "@mui/icons-material/Download";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export const ContextMenuFileItems = ({ hMenuClose }) => {
+export const ContextMenuFileItems = ({
+    hMenuClose,
+    handleDownloadFileLink,
+    handleDeleteFile,
+}) => {
     return (
         <>
             <MenuItem onClick={hMenuClose}>
@@ -30,14 +34,14 @@ export const ContextMenuFileItems = ({ hMenuClose }) => {
                 <ListItemText>Переименовать</ListItemText>
             </MenuItem>
             <Divider />
-            <MenuItem onClick={hMenuClose}>
+            <MenuItem onClick={handleDownloadFileLink}>
                 <ListItemIcon>
                     <DownloadIcon fontSize="small" />
                 </ListItemIcon>
                 <ListItemText>Скачать</ListItemText>
             </MenuItem>
             <Divider />
-            <MenuItem onClick={hMenuClose}>
+            <MenuItem onClick={handleDeleteFile}>
                 <ListItemIcon>
                     <DeleteIcon fontSize="small" />
                 </ListItemIcon>

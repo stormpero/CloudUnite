@@ -20,7 +20,7 @@ import { setInitialState } from "../../../app/Auth/store/features/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useLazyLogoutQuery } from "../../../app/Auth/store/api/authApi";
 
-export const HeaderIcons = () => {
+export const HeaderIcons = ({ friendsDrawerToggle }) => {
     const [anchorElUser, setAnchorElUser] = useState(null);
 
     const user = useSelector((state) => state.auth.user);
@@ -49,6 +49,7 @@ export const HeaderIcons = () => {
     return (
         <Box sx={{ display: "flex" }}>
             <IconButton
+                onClick={friendsDrawerToggle}
                 size="large"
                 aria-label="show 17 new notifications"
                 color="inherit"

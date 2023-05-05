@@ -15,22 +15,30 @@ export const ContextMenuYandex = ({ children }) => {
         setOpenDialog(false);
     };
 
-    const [addNewFolder, result] = useAddNewFolderMutation();
-    console.log("🚀 ~ file: ContextMenuYandex.jsx:19 ~ ContextMenuYandex ~ result:", result)
-    
+    const [addNewFolder] = useAddNewFolderMutation();
+
     const currentUrl = useCurrentUrl();
 
     const funcNewFolder = async (newFolderName) => {
+        console.log(
+            "🚀 ~ file: ContextMenuYandex.jsx:30 ~ funcNewFolder ~ folderPath:",
+            `/${currentUrl}/${newFolderName}`
+        );
+
         try {
             await addNewFolder({
-                folderPath: `/${currentUrl}/${newFolderName}`,
+                folderPath: currentUrl
+                    ? `/${currentUrl}/${newFolderName}`
+                    : `/${newFolderName}`,
             });
         } catch (err) {
             console.error("Failed to create folder: ", err);
         }
     };
 
-    const funcUploadFiles = () => {};
+    const funcUploadFiles = () => {
+        //TODO:
+    };
 
     return (
         <ContextMenuWrapper

@@ -46,6 +46,7 @@ export const DiskFilesGoogle = () => {
             ...el,
             path: el.id
         }));
+    console.log("🚀 ~ file: DiskFilesGoogle.jsx:49 ~ DiskFilesGoogle ~ dirArray:", dirArray)
     const filesArray = files.filter((el) => el.mimeType !== TYPE_FOLDER);
 
     return <DiskSpace dirArray={dirArray} filesArray={filesArray} />;

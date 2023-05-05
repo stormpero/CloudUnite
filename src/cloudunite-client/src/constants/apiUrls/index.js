@@ -1,3 +1,5 @@
+import { URL_FRIENDS_USERSLIST } from "./friendsUrls";
+
 export { URL_ROOT } from "./diskUrls";
 
 export {
@@ -6,5 +8,7 @@ export {
     URL_AUTH_REFRESH,
     URL_GOOGLE_LOGIN,
 } from "./oauth";
+
+export { URL_FRIENDS_USERSLIST } from "./friendsUrls.js";
 
 export { URL_STORAGEQUOTA } from "./diskUrls";

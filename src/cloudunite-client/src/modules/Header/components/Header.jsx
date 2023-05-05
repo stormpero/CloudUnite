@@ -4,7 +4,7 @@ import { IconDrawer } from "./IconDrawer";
 import { SearchInput } from "./SearchInput";
 import { HeaderIcons } from "./HeaderIcons";
 
-export const Header = ({ drawerToggle }) => {
+export const Header = ({ drawerToggle, friendsDrawerToggle }) => {
     return (
         <AppBar
             position="fixed"
@@ -25,7 +25,7 @@ export const Header = ({ drawerToggle }) => {
                 </Typography>
                 <SearchInput />
                 <Box sx={{ flexGrow: 1 }} />
-                <HeaderIcons />
+                <HeaderIcons friendsDrawerToggle={friendsDrawerToggle} />
             </Toolbar>
         </AppBar>
     );

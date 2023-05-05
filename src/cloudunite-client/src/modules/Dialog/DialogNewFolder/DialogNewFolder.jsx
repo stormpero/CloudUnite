@@ -10,10 +10,11 @@ import {
 import React, { useState } from "react";
 
 export const DialogNewFolder = ({ open, handleClose, handleSubmit }) => {
-    const [folderName, setFolderName] = useState("Новая папка");
+    const [folderName, setFolderName] = useState("");
 
     const onSumbit = () => {
         handleSubmit(folderName);
+        setFolderName("");
         handleClose();
     };
 

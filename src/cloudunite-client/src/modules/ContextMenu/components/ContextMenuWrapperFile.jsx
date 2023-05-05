@@ -2,9 +2,46 @@ import { Box } from "@mui/material";
 import React, { useState } from "react";
 import { ContextMenu } from "./ContextMenu";
 import { ContextMenuFileItems } from "./ContextMenuFileItems";
+import {
+    useDeleteFileOrFolderMutation,
+    useLazyGetFileDownloadLinkQuery,
+} from "../../../pages/DiskArea/store/api/diskYandexApi";
+import { useCurrentUrl } from "../../../hooks/useCurrentUrl";
 
-export const ContextMenuWrapperFile = ({ children }) => {
+const downloadByLink = (link) => {
+    let a = document.createElement("a");
+    a.href = link;
+    a.click();
+};
+
+export const ContextMenuWrapperFile = ({ children, id }) => {
     const [contextMenu, setContextMenu] = useState(null);
+    const [getDownloadFileLink] = useLazyGetFileDownloadLinkQuery();
+    const [deleteFile] = useDeleteFileOrFolderMutation();
+
+    const handleDownloadFileLink = async () => {
+        handleContextMenuClose();
+        try {
+            const filesData = await getDownloadFileLink(
+                `/${id}`,
+                true
+            ).unwrap();
+            downloadByLink(filesData?.href);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleDeleteFile = async () => {
+        handleContextMenuClose();
+        try {
+            await deleteFile({
+                folderPath: `/${id}`,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const handleContextMenu = (event) => {
         event.preventDefault();
@@ -33,7 +70,11 @@ export const ContextMenuWrapperFile = ({ children }) => {
                 contextMenu={contextMenu}
                 hMenuClose={handleContextMenuClose}
             >
-                <ContextMenuFileItems hMenuClose={handleContextMenuClose} />
+                <ContextMenuFileItems
+                    handleDownloadFileLink={handleDownloadFileLink}
+                    handleDeleteFile={handleDeleteFile}
+                    hMenuClose={handleContextMenuClose}
+                />
             </ContextMenu>
         </Box>
     );

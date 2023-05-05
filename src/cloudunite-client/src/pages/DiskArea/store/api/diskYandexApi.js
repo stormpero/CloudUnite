@@ -1,6 +1,8 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import {
+    URL_YANDEX_DELETEFILE,
     URL_YANDEX_DISKFILES,
+    URL_YANDEX_GETFILEDOWNLOADLINK,
     URL_YANDEX_NEWFOLDER,
     URL_YANDEX_RECENTFILES,
     URL_YANDEX_TRASHFILES,
@@ -50,6 +52,20 @@ export const diskYandexApi = createApi({
             }),
             invalidatesTags: [{ type: "Files", id: "LIST" }],
         }),
+        getFileDownloadLink: builder.query({
+            query: (path) => ({
+                url: URL_YANDEX_GETFILEDOWNLOADLINK,
+                params: { path },
+            }),
+        }),
+        deleteFileOrFolder: builder.mutation({
+            query: (body) => ({
+                url: URL_YANDEX_DELETEFILE,
+                method: "POST",
+                body,
+            }),
+            invalidatesTags: [{ type: "Files", id: "LIST" }],
+        }),
     }),
 });
 
@@ -59,4 +75,6 @@ export const {
     useGetRecentFilesQuery,
     useGetTrashFilesQuery,
     useAddNewFolderMutation,
+    useLazyGetFileDownloadLinkQuery,
+    useDeleteFileOrFolderMutation,
 } = diskYandexApi;

@@ -6,7 +6,7 @@ import { ContextMenuWrapperFile } from "../../ContextMenu/components/ContextMenu
 export const FileFolderBase = ({ icon, data }) => {
     //TODO: ContexMenu in map
     return (
-        <ContextMenuWrapperFile>
+        <ContextMenuWrapperFile id={data?.path}>
             <ButtonBase
                 component={RouterLink}
                 to={data?.path}

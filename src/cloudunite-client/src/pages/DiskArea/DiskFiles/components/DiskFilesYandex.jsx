@@ -12,13 +12,15 @@ export const DiskFilesYandex = () => {
         .slice(3)
         .join("/");
 
-    const { data, isLoading, refetch } = useGetFolderFilesQuery(path || "/");
+    const { data, isLoading, refetch, isFetching } = useGetFolderFilesQuery(
+        path || "/"
+    );
 
     useEffect(() => {
         refetch();
     }, [location]);
 
-    if (isLoading) {
+    if (isFetching) {
         return <Loading />;
     }
 
@@ -29,11 +31,13 @@ export const DiskFilesYandex = () => {
             id: el.resource_id,
             path: el.path.replace("disk:/", ""),
         }));
+
     const filesArray = data.items
         .filter((el) => el.type !== "dir")
         .map((el) => ({
             ...el,
             id: el.resource_id,
+            path: el.path.replace("disk:/", ""),
         }));
 
     return <DiskSpace dirArray={dirArray} filesArray={filesArray} />;
