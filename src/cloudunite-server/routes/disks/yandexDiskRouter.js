@@ -14,7 +14,17 @@ yandexDiskRouter.get("/list/folderFiles",authMiddleware, YandexDiskController.fo
 yandexDiskRouter.get("/list/recentFiles",authMiddleware, YandexDiskController.recentFiles);
 yandexDiskRouter.get("/list/trashFiles",authMiddleware, YandexDiskController.trashFiles);
 
-yandexDiskRouter.post("/newFolder", authMiddleware, YandexDiskController.newFolder);
+yandexDiskRouter.get("/get/fileDownloadLink",authMiddleware, YandexDiskController.fileDownloadLink); //++
+
+yandexDiskRouter.post("/add/newFolder", authMiddleware, YandexDiskController.newFolder);
+yandexDiskRouter.post("/add/newFile", authMiddleware, () => {});
+
+yandexDiskRouter.post("/edit/fileName", authMiddleware, () => {});
+
+yandexDiskRouter.post("/delete/fileOrFolder", authMiddleware, YandexDiskController.deleteFileOrFolder); //++
+
+yandexDiskRouter.post("publish/file", authMiddleware, () => {});
+yandexDiskRouter.post("unpublish/file", authMiddleware, () => {});
 
 export default yandexDiskRouter;
 

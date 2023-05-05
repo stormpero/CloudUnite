@@ -77,6 +77,27 @@ class YandexDiskController {
         }
     }
 
+    async fileDownloadLink(req, res, next) {
+        try {
+            const {user,  query: {path}} = req;
+            const result = await YandexDiskService.fileDownloadLink(user.id, path);
+            return res.status(200).json(result)
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    async deleteFileOrFolder(req, res, next) {
+        try {
+            console.log(23123)
+            const {user, body: {folderPath}} = req;
+            const result = await YandexDiskService.deleteFileOrFolder(user.id, folderPath);
+            return res.status(200).json(result)
+        } catch (e) {
+            next(e)
+        }
+    }
+
 }
 
 export default new YandexDiskController();

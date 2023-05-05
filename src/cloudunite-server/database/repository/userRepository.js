@@ -16,6 +16,9 @@ class UserRepository {
     async createUser(values) {
         return await Users.create(values, {include: UserTokens});
     }
+    async findAll() {
+        return await Users.findAll({raw: true});
+    }
 }
 
 export default new UserRepository()

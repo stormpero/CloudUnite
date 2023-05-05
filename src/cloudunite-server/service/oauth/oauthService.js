@@ -17,6 +17,7 @@ class OAuthService {
             }),
             version: "v2"
         })
+        console.log("userGoogle1")
         const {data: userGoogle} = await oauth2.userinfo.get();
         let user = await UserRepository.findOneByGoogleId(userGoogle.id);
         if(!user) {

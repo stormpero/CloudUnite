@@ -24,6 +24,7 @@ export const authorizationUrl = oauth2Client.generateAuthUrl({
 
 oauth2Client.on('tokens', async (tokens) => {
     const tokenInfo = await oauth2Client.getTokenInfo(tokens.access_token); // email
+    if (!tokenInfo.email) return
     const user = await UserRepository.findOneByEmail(tokenInfo.email, UserTokens);
     if (user) {
         console.log("ТОКЕН ОБНОВИЛСЯ")

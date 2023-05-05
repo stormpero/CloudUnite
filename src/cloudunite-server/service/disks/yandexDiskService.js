@@ -1,12 +1,10 @@
 import yandex from "../../api/yandexapis/index.js";
 import userRepository from "../../database/repository/userRepository.js";
 import {UserTokens} from "../../database/model/UserTokens.js";
-import oauthService from "../oauth/oauthService.js";
-import axios from "axios";
 import UserRepository from "../../database/repository/userRepository.js";
 import tokenService from "../oauth/tokenService.js";
 import {ApiError} from "../../exceptions/apiError.js";
-import {addNewFolder, getFolderFiles, getTrashFiles} from "../../api/yandexapis/disk.js";
+
 
 class YandexDiskService {
 
@@ -29,10 +27,6 @@ class YandexDiskService {
         user.yandex_id = userInfo.id;
         await user.save();
     }
-
-    // async refreshToken(refreshToken) {
-    //
-    // }
 
     async storageQuota(id) {
         const user = await userRepository.findOneById(id, UserTokens);
@@ -70,6 +64,20 @@ class YandexDiskService {
         const user = await userRepository.findOneById(id, UserTokens);
 
         const data = await yandex.disk.addNewFolder(folderPath, user.user_token.yandexAccessToken);
+        //return data;
+    }
+
+    async fileDownloadLink(id, path) {
+        const user = await userRepository.findOneById(id, UserTokens);
+
+        const data = await yandex.disk.getFileDownloadLink(path, user.user_token.yandexAccessToken);
+        return data;
+    }
+
+    async deleteFileOrFolder(id, folderPath) {
+        const user = await userRepository.findOneById(id, UserTokens);
+
+        const data = await yandex.disk.deleteFileOrFolder(folderPath, user.user_token.yandexAccessToken);
         //return data;
     }
 
