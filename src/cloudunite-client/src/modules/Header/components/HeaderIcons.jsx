@@ -120,13 +120,13 @@ export const HeaderIcons = ({ friendsDrawerToggle }) => {
                     <ListItemIcon>
                         <Settings fontSize="small" />
                     </ListItemIcon>
-                    Settings
+                    Настройки
                 </MenuItem>
                 <MenuItem onClick={logout}>
                     <ListItemIcon>
                         <Logout fontSize="small" />
                     </ListItemIcon>
-                    Logout
+                    Выход
                 </MenuItem>
             </Menu>
         </Box>

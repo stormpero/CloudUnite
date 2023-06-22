@@ -36,7 +36,10 @@ export const ContextMenuYandex = ({ children }) => {
         }
     };
 
-    const funcUploadFiles = () => {
+    const funcUploadFiles = (event) => {
+        const file = event.target.files[0];
+        let formData = new FormData();
+        formData.append('file', file);
         //TODO:
     };
 

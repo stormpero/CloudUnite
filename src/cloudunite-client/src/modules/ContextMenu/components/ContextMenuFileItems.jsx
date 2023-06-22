@@ -6,6 +6,7 @@ import GradeIcon from "@mui/icons-material/Grade";
 import EditIcon from "@mui/icons-material/Edit";
 import DownloadIcon from "@mui/icons-material/Download";
 import DeleteIcon from "@mui/icons-material/Delete";
+import MoveToInboxIcon from "@mui/icons-material/MoveToInbox";
 
 export const ContextMenuFileItems = ({
     hMenuClose,
@@ -20,13 +21,13 @@ export const ContextMenuFileItems = ({
                 </ListItemIcon>
                 <ListItemText>Настроить доступ</ListItemText>
             </MenuItem>
-            <Divider />
             <MenuItem onClick={hMenuClose}>
                 <ListItemIcon>
-                    <GradeIcon fontSize="small" />
+                    <MoveToInboxIcon fontSize="small" />
                 </ListItemIcon>
-                <ListItemText>Добавить в избранное</ListItemText>
+                <ListItemText>Переместить</ListItemText>
             </MenuItem>
+            <Divider />
             <MenuItem onClick={hMenuClose}>
                 <ListItemIcon>
                     <EditIcon fontSize="small" />

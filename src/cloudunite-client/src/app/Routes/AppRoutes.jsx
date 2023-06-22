@@ -29,4 +29,3 @@ export const AppRoutes = () => {
         </AuthStatus>
     );
 };
-//TODO: Not found page
